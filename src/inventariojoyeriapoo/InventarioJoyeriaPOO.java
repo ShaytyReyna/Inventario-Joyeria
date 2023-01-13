@@ -5,8 +5,9 @@
 package inventariojoyeriapoo;
 
 /**
- *
- * @author Sara.Reyna
+ * Eda Nolasco
+ * Nohemi Ramos
+ * Sara Reyna
  */
 public class InventarioJoyeriaPOO {
 
