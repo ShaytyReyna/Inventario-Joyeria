@@ -19,9 +19,9 @@ public class InventarioJoyeriaPOO {
         
         //FM.setVisible(true);
         InicioSesion IS = new InicioSesion();
-        
-        
         IS.setVisible(true);
+        
+      
     }
     
     

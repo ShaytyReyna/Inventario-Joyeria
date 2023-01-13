@@ -41,7 +41,7 @@ public class InicioSesion extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LabelPrincipal.setText("INICIO DE SESION");
-        getContentPane().add(LabelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 45, 107, -1));
+        getContentPane().add(LabelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 45, 160, -1));
 
         LabelUsuario.setText("Usuario");
         getContentPane().add(LabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 104, 57, -1));
@@ -74,6 +74,9 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void BotonListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonListoActionPerformed
         // TODO add your handling code here:
+        Inventario IN = new Inventario();
+        IN.setVisible(true);
+      
     }//GEN-LAST:event_BotonListoActionPerformed
 
     /**
