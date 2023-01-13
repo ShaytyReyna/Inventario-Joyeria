@@ -219,6 +219,11 @@ public class Pedidos extends javax.swing.JFrame {
         jMenu3.add(jMenuItem18);
 
         jMenuItem19.setText("Agregar nuevo producto");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem19);
 
         jMenuBar2.add(jMenu3);
@@ -262,6 +267,8 @@ public class Pedidos extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
+        RegistrarCompra NewCompra = new RegistrarCompra();
+        NewCompra.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -271,6 +278,12 @@ public class Pedidos extends javax.swing.JFrame {
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        AgregarProducto NewProd = new AgregarProducto();
+        NewProd.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     /**
      * @param args the command line arguments

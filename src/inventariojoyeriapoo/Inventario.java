@@ -106,6 +106,11 @@ public class Inventario extends javax.swing.JFrame {
         jMenuBar2.add(jMenu1);
 
         jMenu3.setText("Compra");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMenuItem17.setText("Listas de Compras");
         jMenu3.add(jMenuItem17);
@@ -119,6 +124,11 @@ public class Inventario extends javax.swing.JFrame {
         jMenu3.add(jMenuItem18);
 
         jMenuItem19.setText("Agregar nuevo producto");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem19);
 
         jMenuBar2.add(jMenu3);
@@ -170,6 +180,8 @@ public class Inventario extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
+        RegistrarCompra NewCompra = new RegistrarCompra();
+        NewCompra.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -185,6 +197,16 @@ public class Inventario extends javax.swing.JFrame {
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        AgregarProducto NewProd = new AgregarProducto();
+        NewProd.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -52,6 +52,7 @@ public class InicioSesion extends javax.swing.JFrame {
         getContentPane().add(TFContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 141, 130, -1));
 
         BotonListo.setBackground(new java.awt.Color(113, 118, 217));
+        BotonListo.setForeground(new java.awt.Color(255, 255, 255));
         BotonListo.setText("Listo");
         BotonListo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
