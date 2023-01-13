@@ -176,6 +176,7 @@ public class Pedidos extends javax.swing.JFrame {
         );
 
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuBar1.setMixingCutoutShape(null);
 
         InventarioMenu.setText("Inventario");
         InventarioMenu.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N

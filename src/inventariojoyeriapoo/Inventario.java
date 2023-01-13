@@ -43,7 +43,6 @@ public class Inventario extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
         CerrarSMenu = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -87,6 +86,7 @@ public class Inventario extends javax.swing.JFrame {
         );
 
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuBar1.setMixingCutoutShape(null);
 
         InventarioMenu.setText("Inventario");
         InventarioMenu.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -155,18 +155,9 @@ public class Inventario extends javax.swing.JFrame {
 
         jMenuBar1.add(CompraMenu);
 
-        jMenu5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5ActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenu5);
-
         CerrarSMenu.setText("Cerrar Sesion");
         CerrarSMenu.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        CerrarSMenu.setMixingCutoutShape(null);
         jMenuBar1.add(CerrarSMenu);
 
         setJMenuBar(jMenuBar1);
@@ -204,10 +195,6 @@ public class Inventario extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
@@ -261,7 +248,6 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JTable Inventario;
     private javax.swing.JMenu InventarioMenu;
     private javax.swing.JMenu PedidosMenu;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;

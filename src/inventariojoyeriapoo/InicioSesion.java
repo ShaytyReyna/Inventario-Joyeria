@@ -9,7 +9,7 @@ package inventariojoyeriapoo;
  * @author Sara.Reyna
  */
 public class InicioSesion extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form InicioSesion
      */
