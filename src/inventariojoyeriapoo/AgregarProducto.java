@@ -195,6 +195,16 @@ public class AgregarProducto extends javax.swing.JFrame {
         MenuBar.add(JMenuPedidos);
 
         JMenuCerrarSesion.setText("Cerrar Sesion");
+        JMenuCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JMenuCerrarSesionMouseClicked(evt);
+            }
+        });
+        JMenuCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuCerrarSesionActionPerformed(evt);
+            }
+        });
         MenuBar.add(JMenuCerrarSesion);
 
         setJMenuBar(MenuBar);
@@ -263,6 +273,20 @@ public class AgregarProducto extends javax.swing.JFrame {
         NewProd.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevoProductoItemActionPerformed
+
+    private void JMenuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        InicioSesion IS = new InicioSesion();
+        IS.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JMenuCerrarSesionActionPerformed
+
+    private void JMenuCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionMouseClicked
+        // TODO add your handling code here:
+        InicioSesion IS = new InicioSesion();
+        IS.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JMenuCerrarSesionMouseClicked
 
     /**
      * @param args the command line arguments

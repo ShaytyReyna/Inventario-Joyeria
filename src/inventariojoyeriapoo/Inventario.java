@@ -154,6 +154,16 @@ public class Inventario extends javax.swing.JFrame {
         jMenuBar2.add(jMenu2);
 
         jMenu4.setText("Cerrar Sesion");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
         jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
@@ -210,6 +220,20 @@ public class Inventario extends javax.swing.JFrame {
         NewProd.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+        InicioSesion IS = new InicioSesion();
+        IS.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        // TODO add your handling code here:
+        InicioSesion IS = new InicioSesion();
+        IS.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenu4MouseClicked
 
     /**
      * @param args the command line arguments
