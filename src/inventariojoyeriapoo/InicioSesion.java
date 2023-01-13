@@ -4,6 +4,8 @@
  */
 package inventariojoyeriapoo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sara.Reyna
@@ -30,10 +32,10 @@ public class InicioSesion extends javax.swing.JFrame {
         LabelUsuario = new javax.swing.JLabel();
         LabelContra = new javax.swing.JLabel();
         TFUsuario = new javax.swing.JTextField();
-        TFContra = new javax.swing.JTextField();
         BotonListo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        ContraField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(194, 196, 242));
@@ -49,11 +51,15 @@ public class InicioSesion extends javax.swing.JFrame {
         LabelContra.setText("Contraseña: ");
         getContentPane().add(LabelContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 144, -1, -1));
         getContentPane().add(TFUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 101, 130, -1));
-        getContentPane().add(TFContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 141, 130, -1));
 
         BotonListo.setBackground(new java.awt.Color(113, 118, 217));
         BotonListo.setForeground(new java.awt.Color(255, 255, 255));
         BotonListo.setText("Listo");
+        BotonListo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonListoMouseClicked(evt);
+            }
+        });
         BotonListo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonListoActionPerformed(evt);
@@ -65,6 +71,15 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(194, 196, 242));
         jPanel2.setLayout(null);
+
+        ContraField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContraFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(ContraField);
+        ContraField.setBounds(130, 120, 130, 22);
+
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 20, 360, 260);
 
@@ -75,10 +90,29 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void BotonListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonListoActionPerformed
         // TODO add your handling code here:
-        Inventario IN = new Inventario();
-        IN.setVisible(true);
+        
       
     }//GEN-LAST:event_BotonListoActionPerformed
+
+    private void ContraFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContraFieldActionPerformed
+
+    private void BotonListoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonListoMouseClicked
+        // TODO add your handling code here:
+        
+        String Usuario = "Admin";
+        String Contra = "gatoBizco";
+        
+        String Pass= new String(ContraField.getPassword());
+        if(TFUsuario.getText().equals(Usuario) && Pass.equals(Contra)){
+            Inventario IN = new Inventario();
+            IN.setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "El usuario o contraseña es incorrecto");
+        }
+    }//GEN-LAST:event_BotonListoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -117,10 +151,10 @@ public class InicioSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonListo;
+    private javax.swing.JPasswordField ContraField;
     private javax.swing.JLabel LabelContra;
     private javax.swing.JLabel LabelPrincipal;
     private javax.swing.JLabel LabelUsuario;
-    private javax.swing.JTextField TFContra;
     private javax.swing.JTextField TFUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

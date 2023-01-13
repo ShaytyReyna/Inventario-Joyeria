@@ -182,12 +182,14 @@ public class Inventario extends javax.swing.JFrame {
         // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
@@ -205,7 +207,8 @@ public class Inventario extends javax.swing.JFrame {
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
-        NewProd.setVisible(rootPaneCheckingEnabled);
+        NewProd.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     /**

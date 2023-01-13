@@ -221,18 +221,21 @@ public class RegistrarCompra extends javax.swing.JFrame {
         // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
+        dispose();
     }//GEN-LAST:event_NuevaCompraItemActionPerformed
 
     private void NuevoProductoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoItemActionPerformed
         // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
+        dispose();
     }//GEN-LAST:event_NuevoProductoItemActionPerformed
 
     private void ListaPedidosItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaPedidosItemActionPerformed
         // TODO add your handling code here:
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
+        dispose();
     }//GEN-LAST:event_ListaPedidosItemActionPerformed
 
     private void NuevoPedidoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoPedidoItemActionPerformed

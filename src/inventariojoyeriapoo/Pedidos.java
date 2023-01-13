@@ -174,6 +174,11 @@ public class Pedidos extends javax.swing.JFrame {
         );
 
         jMenu2.setText("Pedidos");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem14.setText("Lista de pedidos");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -269,6 +274,7 @@ public class Pedidos extends javax.swing.JFrame {
         // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -283,7 +289,15 @@ public class Pedidos extends javax.swing.JFrame {
         // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+        Pedidos PD = new Pedidos();
+        PD.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
      * @param args the command line arguments
