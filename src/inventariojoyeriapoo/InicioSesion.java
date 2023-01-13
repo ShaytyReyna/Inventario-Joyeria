@@ -60,11 +60,6 @@ public class InicioSesion extends javax.swing.JFrame {
                 BotonListoMouseClicked(evt);
             }
         });
-        BotonListo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonListoActionPerformed(evt);
-            }
-        });
         getContentPane().add(BotonListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 209, 75, -1));
 
         jPanel1.setLayout(null);
@@ -88,12 +83,6 @@ public class InicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotonListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonListoActionPerformed
-        // TODO add your handling code here:
-        
-      
-    }//GEN-LAST:event_BotonListoActionPerformed
-
     private void ContraFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraFieldActionPerformed
@@ -101,17 +90,20 @@ public class InicioSesion extends javax.swing.JFrame {
     private void BotonListoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonListoMouseClicked
         // TODO add your handling code here:
         
-        String Usuario = "Admin";
-        String Contra = "gatoBizco";
-        
         String Pass= new String(ContraField.getPassword());
-        if(TFUsuario.getText().equals(Usuario) && Pass.equals(Contra)){
-            Inventario IN = new Inventario();
-            IN.setVisible(true);
+        String Usu = new String(TFUsuario.getText());
+        
+        Usuario usuario = new Usuario();
+        String Usuario = new String(usuario.Usuario);
+        String Contra = new String(usuario.Contra);
+        
+        if(Usu.equals(Usuario)&& Pass.equals(Contra)){
+            usuario.InicioSesion(Usu, Pass);
             dispose();
         }else{
             JOptionPane.showMessageDialog(this, "El usuario o contraseña es incorrecto");
         }
+        
     }//GEN-LAST:event_BotonListoMouseClicked
 
     /**
