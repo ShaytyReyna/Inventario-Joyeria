@@ -42,19 +42,17 @@ public class Pedidos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        InventarioMenu = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        PedidosMenu = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        CompraMenu = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        CerrarSMenu = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,91 +173,60 @@ public class Pedidos extends javax.swing.JFrame {
                         .addGap(81, 81, 81))))
         );
 
-        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuBar1.setMixingCutoutShape(null);
+        jMenu2.setText("Pedidos");
 
-        InventarioMenu.setText("Inventario");
-        InventarioMenu.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        InventarioMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        InventarioMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jMenuItem3.setText("Eliminar Producto");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem14.setText("Lista de pedidos");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItem14ActionPerformed(evt);
             }
         });
-        InventarioMenu.add(jMenuItem3);
+        jMenu2.add(jMenuItem14);
 
-        jMenuItem6.setText("Productos");
-        InventarioMenu.add(jMenuItem6);
-
-        jMenuBar1.add(InventarioMenu);
-
-        PedidosMenu.setText("Pedidos");
-        PedidosMenu.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        PedidosMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PedidosMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jMenuItem5.setText("Lista de Pedidos");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem15.setText("Agregar Pedido");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuItem15ActionPerformed(evt);
             }
         });
-        PedidosMenu.add(jMenuItem5);
+        jMenu2.add(jMenuItem15);
 
-        jMenuItem7.setText("Agregar");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar2.add(jMenu2);
+
+        jMenu1.setText("Inventario");
+
+        jMenuItem13.setText("Eliminar Producto");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                jMenuItem13ActionPerformed(evt);
             }
         });
-        PedidosMenu.add(jMenuItem7);
+        jMenu1.add(jMenuItem13);
 
-        jMenuBar1.add(PedidosMenu);
+        jMenuBar2.add(jMenu1);
 
-        CompraMenu.setText("Compra");
-        CompraMenu.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        CompraMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CompraMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu3.setText("Compra");
 
-        jMenuItem4.setText("Lista de Compras");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem17.setText("Listas de Compras");
+        jMenu3.add(jMenuItem17);
+
+        jMenuItem18.setText("Registrar nueva compra");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuItem18ActionPerformed(evt);
             }
         });
-        CompraMenu.add(jMenuItem4);
+        jMenu3.add(jMenuItem18);
 
-        jMenuItem8.setText("Registrar nueva Compra");
-        CompraMenu.add(jMenuItem8);
+        jMenuItem19.setText("Agregar nuevo producto");
+        jMenu3.add(jMenuItem19);
 
-        jMenuItem9.setText("Agregar Producto Nuevo");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        CompraMenu.add(jMenuItem9);
+        jMenuBar2.add(jMenu3);
 
-        jMenuBar1.add(CompraMenu);
+        jMenu4.setText("Cerrar Sesion");
+        jMenuBar2.add(jMenu4);
 
-        jMenu5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5ActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenu5);
-
-        CerrarSMenu.setText("Cerrar Sesion");
-        CerrarSMenu.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jMenuBar1.add(CerrarSMenu);
-
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,7 +242,7 @@ public class Pedidos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -285,36 +252,25 @@ public class Pedidos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        Pedidos PD = new Pedidos();
-        PD.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu5ActionPerformed
-
     private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FechaActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,14 +309,10 @@ public class Pedidos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Cantidad;
-    private javax.swing.JMenu CerrarSMenu;
     private javax.swing.JTextField ClientePedido;
-    private javax.swing.JMenu CompraMenu;
     private javax.swing.JTextField Fecha;
     private javax.swing.JTextField IDPedido;
     private javax.swing.JTextField IDProducto;
-    private javax.swing.JMenu InventarioMenu;
-    private javax.swing.JMenu PedidosMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -369,15 +321,17 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
