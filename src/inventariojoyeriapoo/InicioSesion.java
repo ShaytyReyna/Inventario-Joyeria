@@ -17,6 +17,7 @@ public class InicioSesion extends javax.swing.JFrame {
      */
     public InicioSesion() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,6 +41,7 @@ public class InicioSesion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(194, 196, 242));
         setBounds(new java.awt.Rectangle(200, 200, 200, 200));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LabelPrincipal.setText("INICIO DE SESION");
@@ -73,7 +75,7 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
         jPanel2.add(ContraField);
-        ContraField.setBounds(130, 120, 130, 22);
+        ContraField.setBounds(130, 120, 130, 23);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 20, 360, 260);

@@ -4,6 +4,15 @@
  */
 package inventariojoyeriapoo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author yukinora
@@ -15,7 +24,40 @@ public class Pedidos extends javax.swing.JFrame {
      */
     public Pedidos() {
         initComponents();
+        cargarTabla();
+        this.setLocationRelativeTo(null);
     }
+    
+    private void cargarTabla(){
+        DefaultTableModel modeloTabla = (DefaultTableModel)Pedidos.getModel();
+        modeloTabla.setRowCount(0);
+        PreparedStatement ps;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
+        int columnas;
+        try{
+            String url = "jdbc:mysql://localhost:3306/Inventario_Joyeria";
+            String username = "root";
+            String password = "Lechedefresa";
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT * FROM Pedidos");
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for (int i = 0; i < columnas; i++) {
+                    fila[i] = rs.getObject(i+1);
+                }
+                modeloTabla.addRow(fila);
+            }
+                   
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+        
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,7 +70,7 @@ public class Pedidos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Pedidos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,10 +97,11 @@ public class Pedidos extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(194, 196, 242));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -69,7 +112,7 @@ public class Pedidos extends javax.swing.JFrame {
                 "ID", "Nombre Cliente", "ID Producto", "Cantidad", "Fecha"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Pedidos);
 
         jLabel1.setText("ID");
 
@@ -364,6 +407,7 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JTextField Fecha;
     private javax.swing.JTextField IDPedido;
     private javax.swing.JTextField IDProducto;
+    private javax.swing.JTable Pedidos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -385,6 +429,5 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

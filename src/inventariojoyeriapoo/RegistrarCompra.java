@@ -15,6 +15,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
      */
     public RegistrarCompra() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -46,6 +47,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
         JMenuCerrarSesion = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         FondoMorado.setBackground(new java.awt.Color(194, 196, 242));
 
@@ -95,7 +97,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
                     .addGroup(FondoMoradoLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LabelNombreP, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(LabelNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 183, Short.MAX_VALUE)
                             .addComponent(PrecioP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(39, 39, 39)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

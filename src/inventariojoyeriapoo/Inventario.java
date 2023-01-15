@@ -4,17 +4,59 @@
  */
 package inventariojoyeriapoo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.ResultSetMetaData;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author yukinora
  */
 public class Inventario extends javax.swing.JFrame {
- 
+    
     /**
      * Creates new form Inventario
      */
     public Inventario() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarTabla();
+    }
+    
+    private void cargarTabla(){
+        DefaultTableModel modeloTabla = (DefaultTableModel)Inventario.getModel();
+        modeloTabla.setRowCount(0);
+        PreparedStatement ps;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
+        int columnas;
+        try{
+            String url = "jdbc:mysql://localhost:3306/Inventario_Joyeria";
+            String username = "root";
+            String password = "Lechedefresa";
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT * FROM Inventario");
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for (int i = 0; i < columnas; i++) {
+                    fila[i] = rs.getObject(i+1);
+                }
+                modeloTabla.addRow(fila);
+            }
+                   
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+        
     }
 
     /**
@@ -60,6 +102,7 @@ public class Inventario extends javax.swing.JFrame {
         jMenuItem16.setText("jMenuItem16");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(194, 196, 242));
 
@@ -73,7 +116,15 @@ public class Inventario extends javax.swing.JFrame {
             new String [] {
                 "ID", "Productos", "Precio", "Stock"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(Inventario);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
