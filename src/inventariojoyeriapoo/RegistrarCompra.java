@@ -36,7 +36,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
         JMenuInventario = new javax.swing.JMenu();
-        EliminarProductoITem = new javax.swing.JMenuItem();
+        ProductosITem = new javax.swing.JMenuItem();
         JMenuCompra = new javax.swing.JMenu();
         ListaComprasItem = new javax.swing.JMenuItem();
         NuevaCompraItem = new javax.swing.JMenuItem();
@@ -125,13 +125,13 @@ public class RegistrarCompra extends javax.swing.JFrame {
 
         JMenuInventario.setText("Inventario");
 
-        EliminarProductoITem.setText("Eliminar Producto");
-        EliminarProductoITem.addActionListener(new java.awt.event.ActionListener() {
+        ProductosITem.setText("Lista de Productos");
+        ProductosITem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarProductoITemActionPerformed(evt);
+                ProductosITemActionPerformed(evt);
             }
         });
-        JMenuInventario.add(EliminarProductoITem);
+        JMenuInventario.add(ProductosITem);
 
         MenuBar.add(JMenuInventario);
 
@@ -225,9 +225,12 @@ public class RegistrarCompra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonAgregarPActionPerformed
 
-    private void EliminarProductoITemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductoITemActionPerformed
+    private void ProductosITemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosITemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EliminarProductoITemActionPerformed
+        Inventario in = new Inventario();
+        in.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ProductosITemActionPerformed
 
     private void NuevaCompraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCompraItemActionPerformed
         // TODO add your handling code here:
@@ -306,7 +309,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarP;
-    private javax.swing.JMenuItem EliminarProductoITem;
     private javax.swing.JPanel FondoMorado;
     private javax.swing.JMenu JMenuCerrarSesion;
     private javax.swing.JMenu JMenuCompra;
@@ -320,6 +322,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
     private javax.swing.JMenuItem NuevoPedidoItem;
     private javax.swing.JMenuItem NuevoProductoItem;
     private javax.swing.JLabel PrecioP;
+    private javax.swing.JMenuItem ProductosITem;
     private javax.swing.JTextField TFLabelPrecioP;
     private javax.swing.JTextField TFNombreP;
     private javax.swing.JLabel jLabel1;

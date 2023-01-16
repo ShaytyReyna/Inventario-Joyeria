@@ -146,7 +146,7 @@ public class Inventario extends javax.swing.JFrame {
 
         jMenu1.setText("Inventario");
 
-        jMenuItem13.setText("Eliminar Producto");
+        jMenuItem13.setText("Lista de Productos");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
@@ -259,6 +259,9 @@ public class Inventario extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
+        Inventario in = new Inventario();
+        in.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed

@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sara.Reyna/Documents/Upiicsa/Tercero/POO/TercerParcial/Inventario-Joyeria/src/inventariojoyeriapoo/AgregarProducto.java</file>
-            <file>file:/C:/Users/Sara.Reyna/Documents/Upiicsa/Tercero/POO/TercerParcial/Inventario-Joyeria/src/inventariojoyeriapoo/RegistrarCompra.java</file>
-            <file>file:/C:/Users/Sara.Reyna/Documents/Upiicsa/Tercero/POO/TercerParcial/Inventario-Joyeria/src/inventariojoyeriapoo/InicioSesion.java</file>
-            <file>file:/C:/Users/Sara.Reyna/Documents/Upiicsa/Tercero/POO/TercerParcial/Inventario-Joyeria/src/inventariojoyeriapoo/Pedidos.java</file>
-            <file>file:/C:/Users/Sara.Reyna/Documents/Upiicsa/Tercero/POO/TercerParcial/Inventario-Joyeria/src/inventariojoyeriapoo/Usuario.java</file>
-            <file>file:/C:/Users/Sara.Reyna/Documents/Upiicsa/Tercero/POO/TercerParcial/Inventario-Joyeria/src/inventariojoyeriapoo/Inventario.java</file>
+            <file>file:/Users/yukinora/Downloads/InventarioJoyeriaPOO/src/inventariojoyeriapoo/Pedidos.java</file>
+            <file>file:/Users/yukinora/Downloads/InventarioJoyeriaPOO/src/inventariojoyeriapoo/RegistrarCompra.java</file>
+            <file>file:/Users/yukinora/Downloads/InventarioJoyeriaPOO/src/inventariojoyeriapoo/AgregarProducto.java</file>
+            <file>file:/Users/yukinora/Downloads/InventarioJoyeriaPOO/src/inventariojoyeriapoo/InicioSesion.java</file>
+            <file>file:/Users/yukinora/Downloads/InventarioJoyeriaPOO/src/inventariojoyeriapoo/Inventario.java</file>
+            <file>file:/Users/yukinora/Downloads/InventarioJoyeriaPOO/src/inventariojoyeriapoo/ConectarMysql.java</file>
+            <file>file:/Users/yukinora/Downloads/InventarioJoyeriaPOO/src/inventariojoyeriapoo/InventarioClass.java</file>
         </group>
     </open-files>
 </project-private>

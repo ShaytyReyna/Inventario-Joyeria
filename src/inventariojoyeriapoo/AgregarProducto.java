@@ -38,7 +38,7 @@ public class AgregarProducto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
         JMenuInventario = new javax.swing.JMenu();
-        EliminarProductoITem = new javax.swing.JMenuItem();
+        ProductosITem = new javax.swing.JMenuItem();
         JMenuCompra = new javax.swing.JMenu();
         ListaComprasItem = new javax.swing.JMenuItem();
         NuevaCompraItem = new javax.swing.JMenuItem();
@@ -112,11 +112,11 @@ public class AgregarProducto extends javax.swing.JFrame {
             .addGroup(FondoMoradoLayout.createSequentialGroup()
                 .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FondoMoradoLayout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(BotonAgregarP, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(FondoMoradoLayout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1))
+                    .addGroup(FondoMoradoLayout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(BotonAgregarP, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         FondoMoradoLayout.setVerticalGroup(
@@ -137,19 +137,19 @@ public class AgregarProducto extends javax.swing.JFrame {
                     .addComponent(TFStockP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StockP))
                 .addGap(39, 39, 39)
-                .addComponent(BotonAgregarP)
-                .addGap(53, 53, 53))
+                .addComponent(BotonAgregarP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         JMenuInventario.setText("Inventario");
 
-        EliminarProductoITem.setText("Eliminar Producto");
-        EliminarProductoITem.addActionListener(new java.awt.event.ActionListener() {
+        ProductosITem.setText("Lista de Productos");
+        ProductosITem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarProductoITemActionPerformed(evt);
+                ProductosITemActionPerformed(evt);
             }
         });
-        JMenuInventario.add(EliminarProductoITem);
+        JMenuInventario.add(ProductosITem);
 
         MenuBar.add(JMenuInventario);
 
@@ -231,9 +231,12 @@ public class AgregarProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EliminarProductoITemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductoITemActionPerformed
+    private void ProductosITemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosITemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EliminarProductoITemActionPerformed
+        Inventario in = new Inventario();
+        in.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ProductosITemActionPerformed
 
     private void NuevaCompraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCompraItemActionPerformed
         // TODO add your handling code here:
@@ -327,7 +330,6 @@ public class AgregarProducto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarP;
-    private javax.swing.JMenuItem EliminarProductoITem;
     private javax.swing.JPanel FondoMorado;
     private javax.swing.JMenu JMenuCerrarSesion;
     private javax.swing.JMenu JMenuCompra;
@@ -341,6 +343,7 @@ public class AgregarProducto extends javax.swing.JFrame {
     private javax.swing.JMenuItem NuevoPedidoItem;
     private javax.swing.JMenuItem NuevoProductoItem;
     private javax.swing.JLabel PrecioP;
+    private javax.swing.JMenuItem ProductosITem;
     private javax.swing.JLabel StockP;
     private javax.swing.JTextField TFLabelPrecioP;
     private javax.swing.JTextField TFNombreP;
