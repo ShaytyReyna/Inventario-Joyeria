@@ -161,6 +161,11 @@ public class AgregarCompra extends javax.swing.JFrame {
         JMenuCompra.setText("Compra");
 
         ListaComprasItem.setText("Listas de Compras");
+        ListaComprasItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListaComprasItemActionPerformed(evt);
+            }
+        });
         JMenuCompra.add(ListaComprasItem);
 
         NuevaCompraItem.setText("Registrar nueva compra");
@@ -263,6 +268,9 @@ public class AgregarCompra extends javax.swing.JFrame {
 
     private void NuevoPedidoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoPedidoItemActionPerformed
         // TODO add your handling code here:
+        AgregarCompra AP = new AgregarCompra();
+        AP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_NuevoPedidoItemActionPerformed
 
     private void JMenuCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionMouseClicked
@@ -295,6 +303,13 @@ public class AgregarCompra extends javax.swing.JFrame {
     private void JTCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTCantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTCantidadActionPerformed
+
+    private void ListaComprasItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaComprasItemActionPerformed
+        // TODO add your handling code here:
+        CompraInterfaz CI = new CompraInterfaz();
+        CI.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ListaComprasItemActionPerformed
 
     /**
      * @param args the command line arguments

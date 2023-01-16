@@ -97,7 +97,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
                     .addGroup(FondoMoradoLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LabelNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(LabelNombreP, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                             .addComponent(PrecioP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(39, 39, 39)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -138,6 +138,11 @@ public class RegistrarCompra extends javax.swing.JFrame {
         JMenuCompra.setText("Compra");
 
         ListaComprasItem.setText("Listas de Compras");
+        ListaComprasItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListaComprasItemActionPerformed(evt);
+            }
+        });
         JMenuCompra.add(ListaComprasItem);
 
         NuevaCompraItem.setText("Registrar nueva compra");
@@ -255,6 +260,9 @@ public class RegistrarCompra extends javax.swing.JFrame {
 
     private void NuevoPedidoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoPedidoItemActionPerformed
         // TODO add your handling code here:
+        AgregarCompra AP = new AgregarCompra();
+        AP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_NuevoPedidoItemActionPerformed
 
     private void JMenuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionActionPerformed
@@ -271,6 +279,13 @@ public class RegistrarCompra extends javax.swing.JFrame {
         IS.setVisible(true);
         dispose();
     }//GEN-LAST:event_JMenuCerrarSesionMouseClicked
+
+    private void ListaComprasItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaComprasItemActionPerformed
+        // TODO add your handling code here:
+        CompraInterfaz CI = new CompraInterfaz();
+        CI.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ListaComprasItemActionPerformed
 
     /**
      * @param args the command line arguments

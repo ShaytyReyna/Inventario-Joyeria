@@ -339,6 +339,9 @@ public class Pedidos extends javax.swing.JFrame {
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
+        AgregarCompra AP = new AgregarCompra();
+        AP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
