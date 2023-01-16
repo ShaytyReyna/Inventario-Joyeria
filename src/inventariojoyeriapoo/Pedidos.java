@@ -256,6 +256,11 @@ public class Pedidos extends javax.swing.JFrame {
         jMenu3.setText("Compra");
 
         jMenuItem17.setText("Listas de Compras");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem17);
 
         jMenuItem18.setText("Registrar nueva compra");
@@ -371,6 +376,13 @@ public class Pedidos extends javax.swing.JFrame {
         IS.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+        CompraInterfaz CI = new CompraInterfaz();
+        CI.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
      * @param args the command line arguments

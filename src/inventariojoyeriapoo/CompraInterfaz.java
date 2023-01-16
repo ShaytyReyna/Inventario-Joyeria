@@ -4,6 +4,15 @@
  */
 package inventariojoyeriapoo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sara.Reyna
@@ -15,9 +24,39 @@ public class CompraInterfaz extends javax.swing.JFrame {
      */
     public CompraInterfaz() {
         initComponents();
+        cargarTabla();
         this.setLocationRelativeTo(null);
     }
-
+    
+    private void cargarTabla(){
+        DefaultTableModel modeloTabla = (DefaultTableModel)Compras.getModel();
+        modeloTabla.setRowCount(0);
+        PreparedStatement ps;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
+        int columnas;
+        try{
+            String url = "jdbc:mysql://localhost:3306/Inventario_Joyeria";
+            String username = "root";
+            String password = "Lechedefresa";
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT * FROM Compras"); //revisar si si se llama asi la tabla
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for (int i = 0; i < columnas; i++) {
+                    fila[i] = rs.getObject(i+1);
+                }
+                modeloTabla.addRow(fila);
+            }
+                   
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +68,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
 
         JPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaCom = new javax.swing.JTable();
+        Compras = new javax.swing.JTable();
         JLabelIDCom = new javax.swing.JLabel();
         JLabelNomCliCom = new javax.swing.JLabel();
         JLabelCanCom = new javax.swing.JLabel();
@@ -57,7 +96,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
 
         JPanel2.setBackground(new java.awt.Color(194, 193, 242));
 
-        TablaCom.setModel(new javax.swing.table.DefaultTableModel(
+        Compras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -68,7 +107,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
                 "ID", "Nombre Cliente", "Cantidad", "Fecha"
             }
         ));
-        jScrollPane1.setViewportView(TablaCom);
+        jScrollPane1.setViewportView(Compras);
 
         JLabelIDCom.setText("ID");
 
@@ -375,6 +414,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonEditarCom;
     private javax.swing.JButton BotonEliminarCom;
+    private javax.swing.JTable Compras;
     private javax.swing.JLabel JLabelCanCom;
     private javax.swing.JLabel JLabelFechaCom;
     private javax.swing.JLabel JLabelIDCom;
@@ -384,7 +424,6 @@ public class CompraInterfaz extends javax.swing.JFrame {
     private javax.swing.JTextField JtexFechaCom;
     private javax.swing.JTextField JtexIDCom;
     private javax.swing.JTextField JtexNomCliCom;
-    private javax.swing.JTable TablaCom;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
