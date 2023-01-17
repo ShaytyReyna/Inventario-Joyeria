@@ -36,11 +36,13 @@ public class CompraInterfaz extends javax.swing.JFrame {
         ResultSetMetaData rsmd;
         int columnas;
         try{
-            String url = "jdbc:mysql://localhost:3306/Inventario_Joyeria";
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            /*String username = "root";
+            String password = "Lechedefresa";*/
             String username = "root";
-            String password = "Lechedefresa";
+            String password = "$usanA198";
             Connection connection = DriverManager.getConnection(url,username,password);
-            ps = connection.prepareStatement("SELECT * FROM Compras"); //revisar si si se llama asi la tabla
+            ps = connection.prepareStatement("SELECT * FROM compras"); //revisar si si se llama asi la tabla
             rs = ps.executeQuery();
             rsmd = rs.getMetaData();
             columnas = rsmd.getColumnCount();

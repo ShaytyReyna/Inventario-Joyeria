@@ -4,6 +4,18 @@
  */
 package inventariojoyeriapoo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sara.Reyna
@@ -298,6 +310,34 @@ public class AgregarCompra extends javax.swing.JFrame {
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
         // TODO add your handling code here:
+        String nombre = TFNombreC.getText();
+        int IDProducto = Integer.parseInt( TFIDProducto.getText());
+        int Cantidad = Integer.parseInt(JTCantidad.getText());
+        String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
+     
+        PreparedStatement ps;
+        //ResultSet rs;
+        //ResultSetMetaData rsmd;
+        
+        try{
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            /*String username = "root";
+            String password = "Lechedefresa";*/
+            String username = "root";
+            String password = "$usanA198";
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps= connection.prepareStatement("INSERT INTO pedidos (nom_client, id_pr,cantidad, fecha) VALUES (?, ?, ?, ?)");
+            
+            ps.setString(1, nombre);
+            ps.setInt(2, IDProducto);
+            ps.setInt(3, Cantidad);
+            ps.setString(4, timeStamp);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro guardado");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
     }//GEN-LAST:event_BotonAgregarActionPerformed
 
     private void JTCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTCantidadActionPerformed
