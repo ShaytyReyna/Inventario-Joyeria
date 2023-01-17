@@ -145,6 +145,11 @@
                   <Component id="jScrollPane1" min="-2" pref="437" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="LaberIDCompra" min="-2" pref="84" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="TFIDCompra" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="JLabelCanCom" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -159,18 +164,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="BotonEliminarCom" alignment="1" min="-2" pref="82" max="-2" attributes="0"/>
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="JLabelNomCliCom" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="JLabelIDCom" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="JLabelNomCliCom" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="JtexNomCliCom" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="JtexIDCom" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="JtexNomCliCom" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
@@ -193,12 +192,12 @@
                           <Component id="jScrollPane1" min="-2" pref="377" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="JLabelIDCom" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JtexIDCom" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="LaberIDCompra" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TFIDCompra" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="JLabelNomCliCom" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="JtexNomCliCom" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -248,14 +247,12 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ComprasMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="JLabelIDCom">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ID"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="JLabelNomCliCom">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre del Cliente"/>
@@ -274,11 +271,6 @@
         <Component class="javax.swing.JTextField" name="JtexCantCom">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtexCantComActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="JtexIDCom">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtexIDComActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="JtexFechaCom">
@@ -302,6 +294,13 @@
               <Color blue="cc" green="f2" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Editar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="TFIDCompra">
+        </Component>
+        <Component class="javax.swing.JLabel" name="LaberIDCompra">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID de compra"/>
           </Properties>
         </Component>
       </SubComponents>

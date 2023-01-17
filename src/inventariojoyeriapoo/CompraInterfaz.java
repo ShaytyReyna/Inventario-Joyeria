@@ -28,21 +28,24 @@ public class CompraInterfaz extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
+    String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+    /*String username = "root";
+    String password = "Lechedefresa";*/
+    String username = "root";
+    String password = "$usanA198";
+    PreparedStatement ps;
+    ResultSet rs;
+    ResultSetMetaData rsmd;
+    
     private void cargarTabla(){
         DefaultTableModel modeloTabla = (DefaultTableModel)Compras.getModel();
         modeloTabla.setRowCount(0);
-        PreparedStatement ps;
-        ResultSet rs;
-        ResultSetMetaData rsmd;
+        
         int columnas;
         try{
-            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            /*String username = "root";
-            String password = "Lechedefresa";*/
-            String username = "root";
-            String password = "$usanA198";
+            
             Connection connection = DriverManager.getConnection(url,username,password);
-            ps = connection.prepareStatement("SELECT * FROM compras"); //revisar si si se llama asi la tabla
+            ps = connection.prepareStatement("SELECT * FROM compras"); 
             rs = ps.executeQuery();
             rsmd = rs.getMetaData();
             columnas = rsmd.getColumnCount();
@@ -71,16 +74,16 @@ public class CompraInterfaz extends javax.swing.JFrame {
         JPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Compras = new javax.swing.JTable();
-        JLabelIDCom = new javax.swing.JLabel();
         JLabelNomCliCom = new javax.swing.JLabel();
         JLabelCanCom = new javax.swing.JLabel();
         JLabelFechaCom = new javax.swing.JLabel();
         JtexCantCom = new javax.swing.JTextField();
-        JtexIDCom = new javax.swing.JTextField();
         JtexFechaCom = new javax.swing.JTextField();
         JtexNomCliCom = new javax.swing.JTextField();
         BotonEliminarCom = new javax.swing.JButton();
         BotonEditarCom = new javax.swing.JButton();
+        TFIDCompra = new javax.swing.JTextField();
+        LaberIDCompra = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -109,9 +112,12 @@ public class CompraInterfaz extends javax.swing.JFrame {
                 "ID", "Nombre Cliente", "Cantidad", "Fecha"
             }
         ));
+        Compras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ComprasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Compras);
-
-        JLabelIDCom.setText("ID");
 
         JLabelNomCliCom.setText("Nombre del Cliente");
 
@@ -122,12 +128,6 @@ public class CompraInterfaz extends javax.swing.JFrame {
         JtexCantCom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JtexCantComActionPerformed(evt);
-            }
-        });
-
-        JtexIDCom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JtexIDComActionPerformed(evt);
             }
         });
 
@@ -142,6 +142,8 @@ public class CompraInterfaz extends javax.swing.JFrame {
         BotonEditarCom.setBackground(new java.awt.Color(255, 242, 204));
         BotonEditarCom.setText("Editar");
 
+        LaberIDCompra.setText("ID de compra");
+
         javax.swing.GroupLayout JPanel2Layout = new javax.swing.GroupLayout(JPanel2);
         JPanel2.setLayout(JPanel2Layout);
         JPanel2Layout.setHorizontalGroup(
@@ -151,6 +153,10 @@ public class CompraInterfaz extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
                 .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanel2Layout.createSequentialGroup()
+                        .addComponent(LaberIDCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(TFIDCompra))
                     .addGroup(JPanel2Layout.createSequentialGroup()
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JLabelCanCom)
@@ -162,15 +168,11 @@ public class CompraInterfaz extends javax.swing.JFrame {
                     .addGroup(JPanel2Layout.createSequentialGroup()
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(BotonEliminarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JLabelNomCliCom)
-                                .addComponent(JLabelIDCom, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(JLabelNomCliCom))
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JtexNomCliCom)
-                                    .addComponent(JtexIDCom)))
+                                .addComponent(JtexNomCliCom))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(BotonEditarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,11 +187,11 @@ public class CompraInterfaz extends javax.swing.JFrame {
                         .addContainerGap(15, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JPanel2Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                        .addGap(111, 111, 111)
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JLabelIDCom)
-                            .addComponent(JtexIDCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(LaberIDCompra)
+                            .addComponent(TFIDCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JLabelNomCliCom)
                             .addComponent(JtexNomCliCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -363,10 +365,6 @@ public class CompraInterfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JtexCantComActionPerformed
 
-    private void JtexIDComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtexIDComActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JtexIDComActionPerformed
-
     private void BotonEliminarComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarComActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonEliminarComActionPerformed
@@ -377,6 +375,32 @@ public class CompraInterfaz extends javax.swing.JFrame {
         CI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void ComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComprasMouseClicked
+        // TODO add your handling code here:
+        try{
+            int fila = Compras.getSelectedRow();
+            int id= Integer.parseInt(Compras.getValueAt(fila, 0).toString());
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT id_c, id_pr,cantidad,fecha FROM compras where id_c=?"); 
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                TFIDCompra.setText(rs.getString("id_c"));
+                TFIDCompra.setEditable(false);
+                TFIDCompra.setEnabled(false);
+                
+                JtexNomCliCom.setText(rs.getString("id_pr"));
+                JtexCantCom.setText(rs.getString("cantidad"));
+                JtexFechaCom.setText(rs.getString("fecha"));
+            }
+           
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+    }//GEN-LAST:event_ComprasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -419,13 +443,13 @@ public class CompraInterfaz extends javax.swing.JFrame {
     private javax.swing.JTable Compras;
     private javax.swing.JLabel JLabelCanCom;
     private javax.swing.JLabel JLabelFechaCom;
-    private javax.swing.JLabel JLabelIDCom;
     private javax.swing.JLabel JLabelNomCliCom;
     private javax.swing.JPanel JPanel2;
     private javax.swing.JTextField JtexCantCom;
     private javax.swing.JTextField JtexFechaCom;
-    private javax.swing.JTextField JtexIDCom;
     private javax.swing.JTextField JtexNomCliCom;
+    private javax.swing.JLabel LaberIDCompra;
+    private javax.swing.JTextField TFIDCompra;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
