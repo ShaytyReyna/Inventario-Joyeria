@@ -4,6 +4,14 @@
  */
 package inventariojoyeriapoo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sara.Reyna
@@ -278,6 +286,30 @@ public class AgregarProducto extends javax.swing.JFrame {
 
     private void BotonAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarPActionPerformed
         // TODO add your handling code here:
+        
+        String productos = TFNombreP.getText();
+        double precio = Double.parseDouble(TFLabelPrecioP.getText());
+        int stock = Integer.parseInt(TFStockP.getText());
+        
+        PreparedStatement ps;
+        
+        try{
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            String username = "root";
+            //String password = "Lechedefresa";
+            String password = "$usanA198";
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps= connection.prepareStatement("INSERT INTO inventario (productos, precio, stock) VALUES (?, ?, ?)");
+            
+            ps.setString(1, productos);
+            ps.setDouble(2, precio);
+            ps.setInt(3, stock);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Producto guardado");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
     }//GEN-LAST:event_BotonAgregarPActionPerformed
 
     private void NuevoProductoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoItemActionPerformed
