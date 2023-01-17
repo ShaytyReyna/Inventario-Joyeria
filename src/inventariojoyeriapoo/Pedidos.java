@@ -114,6 +114,11 @@ public class Pedidos extends javax.swing.JFrame {
                 "ID", "Nombre Cliente", "ID Producto", "Cantidad", "Fecha"
             }
         ));
+        Pedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PedidosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Pedidos);
 
         jLabel1.setText("ID");
@@ -385,6 +390,36 @@ public class Pedidos extends javax.swing.JFrame {
         CI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void PedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PedidosMouseClicked
+        // TODO add your handling code here:
+         try {
+            int fila = Pedidos.getSelectedRow();
+            int id = Integer.parseInt(Pedidos.getValueAt(fila, 0).toString());
+            PreparedStatement ps;
+            ResultSet rs;
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            String username = "root";
+            String password = "Lechedefresa";
+            /*String username = "root";
+            String password = "$usanA198";*/
+            
+            Connection connection = DriverManager.getConnection(url, username, password);
+            ps = connection.prepareStatement("SELECT nom_client, id_pr, cantidad, fecha FROM pedidos WHERE id_pe=?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                IDPedido.setText(String.valueOf(id));
+                ClientePedido.setText(rs.getString("nom_client"));
+                IDProducto.setText(rs.getString("id_pr"));
+                Cantidad.setText(rs.getString("cantidad"));
+                Fecha.setText(rs.getString("fecha"));
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+    }//GEN-LAST:event_PedidosMouseClicked
 
     /**
      * @param args the command line arguments
