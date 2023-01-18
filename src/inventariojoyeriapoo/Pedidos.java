@@ -400,9 +400,8 @@ public class Pedidos extends javax.swing.JFrame {
             ResultSet rs;
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
             String username = "root";
-            String password = "Lechedefresa";
-            /*String username = "root";
-            String password = "$usanA198";*/
+            /*String password = "Lechedefresa";*/
+            String password = "$usanA198";
             
             Connection connection = DriverManager.getConnection(url, username, password);
             ps = connection.prepareStatement("SELECT nom_client, id_pr, cantidad, fecha FROM pedidos WHERE id_pe=?");
@@ -410,6 +409,9 @@ public class Pedidos extends javax.swing.JFrame {
             rs = ps.executeQuery();
             while (rs.next()) {
                 IDPedido.setText(String.valueOf(id));
+                IDPedido.setEditable(false);
+                IDPedido.setEnabled(false);
+                
                 ClientePedido.setText(rs.getString("nom_client"));
                 IDProducto.setText(rs.getString("id_pr"));
                 Cantidad.setText(rs.getString("cantidad"));
