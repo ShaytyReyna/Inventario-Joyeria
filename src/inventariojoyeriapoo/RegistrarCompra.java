@@ -4,6 +4,17 @@
  */
 package inventariojoyeriapoo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sara.Reyna
@@ -17,6 +28,101 @@ public class RegistrarCompra extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+   
+    String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+    String username = "root";
+    /*String password = "Lechedefresa";*/
+    String password = "$usanA198";
+    PreparedStatement ps;
+    ResultSet rs;
+    ResultSetMetaData rsmd;
+    //Statement stm;
+     int ViejaCantidad; 
+     
+   private void cargarInventario(int IDProducto){
+       DefaultTableModel modeloTabla = (DefaultTableModel)Compras.getModel();
+       modeloTabla.setRowCount(0);
+       
+       int columnas;
+       try{
+           
+           Connection connection = DriverManager.getConnection(url,username,password);
+            //ps= connection.prepareStatement("SELECT stock FROM inventario WHERE id_pr = ?");
+            //ps.setInt(1, IDProducto);
+            //Statement stm = connection.createStatement();
+            /*
+            ps = connection.prepareStatement("SELECT * FROM compras"); 
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            */
+            ps = connection.prepareStatement("SELECT stock FROM inventario WHERE id_pr = ?");
+            ps.setInt(1, IDProducto);
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for(int i = 0; i<columnas; i++){
+                    fila[i] =rs.getObject(i+1);
+                }
+                modeloTabla.addRow(fila);
+            }
+             
+            //pasar estas dos ultimas lineas a otro metodo para poder 
+            //despues llamar en el que estamos ahorita y asi re guardar 
+            //lo que tenemos en la vieja cantidad
+            //int f = Compras.getSelectedRow();
+            //ViejaCantidad = Integer.parseInt(Compras.getValueAt(f, 0).toString());
+            
+       }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+       }  
+   }
+   
+   private void cargarViejaCantidad(int IDProducto){
+       
+        try{
+            int fila = Compras.getSelectedRow();
+            int cantidad= Integer.parseInt(Compras.getValueAt(fila, 0).toString());
+            
+            cargarInventario(IDProducto);
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT stock FROM inventario WHERE id_pr = ?"); 
+            ps.setInt(1, IDProducto);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                TFIDCompra.setText(rs.getString("id_c"));
+                TFIDCompra.setEditable(false);
+                TFIDCompra.setEnabled(false);
+                
+                JtexNomCliCom.setText(rs.getString("id_pr"));
+                ViejaCantidad.setText(rs.getString("stock"));
+                JtexFechaCom.setText(rs.getString("fecha"));
+            }
+           
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+   }
+   private void actualizarInventario(int IDProducto, int Cantidad){
+       try{
+           cargarViejaCantidad(IDProducto);
+            Connection connection = DriverManager.getConnection(url,username,password);
+            
+            ps= connection.prepareStatement("update inventario set stock= ? where id_pr = ?");
+            int nuevaCantidad = Cantidad+ ViejaCantidad;
+            ps.setInt(1, nuevaCantidad);
+            ps.setInt(2, IDProducto);
+            ps.executeUpdate();
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }  
+       
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +140,8 @@ public class RegistrarCompra extends javax.swing.JFrame {
         PrecioP = new javax.swing.JLabel();
         BotonAgregarP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Compras = new javax.swing.JTable();
         MenuBar = new javax.swing.JMenuBar();
         JMenuInventario = new javax.swing.JMenu();
         ProductosITem = new javax.swing.JMenuItem();
@@ -82,6 +190,35 @@ public class RegistrarCompra extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("REGISTRAR NUEVA COMPRA ");
 
+        Compras.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Cantidad anterior"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Compras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ComprasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Compras);
+        if (Compras.getColumnModel().getColumnCount() > 0) {
+            Compras.getColumnModel().getColumn(0).setResizable(false);
+        }
+
         javax.swing.GroupLayout FondoMoradoLayout = new javax.swing.GroupLayout(FondoMorado);
         FondoMorado.setLayout(FondoMoradoLayout);
         FondoMoradoLayout.setHorizontalGroup(
@@ -102,13 +239,16 @@ public class RegistrarCompra extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(TFLabelPrecioP, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TFNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TFNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(FondoMoradoLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
         FondoMoradoLayout.setVerticalGroup(
             FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoMoradoLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+            .addGroup(FondoMoradoLayout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(61, 61, 61)
                 .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -120,7 +260,9 @@ public class RegistrarCompra extends javax.swing.JFrame {
                     .addComponent(PrecioP))
                 .addGap(51, 51, 51)
                 .addComponent(BotonAgregarP)
-                .addGap(53, 53, 53))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         JMenuInventario.setText("Inventario");
@@ -228,6 +370,31 @@ public class RegistrarCompra extends javax.swing.JFrame {
 
     private void BotonAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarPActionPerformed
         // TODO add your handling code here:
+        int IDProducto = Integer.parseInt( TFNombreP.getText());
+        int Cantidad = Integer.parseInt(TFLabelPrecioP.getText());
+        
+        String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
+     
+        
+        //ResultSet rs;
+        //ResultSetMetaData rsmd;
+        
+        try{
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps= connection.prepareStatement("INSERT INTO compras (id_pr,cantidad, fecha) VALUES (?, ?, ?)");
+            ps.setInt(1, IDProducto);
+            ps.setInt(2, Cantidad);
+            ps.setString(3, timeStamp);
+            ps.executeUpdate();
+            
+            /***********************************************************************************/
+            actualizarInventario(IDProducto,Cantidad);
+            
+            /**************************************************************************************/
+            JOptionPane.showMessageDialog(null, "Registro guardado");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }            
     }//GEN-LAST:event_BotonAgregarPActionPerformed
 
     private void ProductosITemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosITemActionPerformed
@@ -287,6 +454,10 @@ public class RegistrarCompra extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ListaComprasItemActionPerformed
 
+    private void ComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComprasMouseClicked
+        
+    }//GEN-LAST:event_ComprasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -324,6 +495,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarP;
+    private javax.swing.JTable Compras;
     private javax.swing.JPanel FondoMorado;
     private javax.swing.JMenu JMenuCerrarSesion;
     private javax.swing.JMenu JMenuCompra;
@@ -341,5 +513,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
     private javax.swing.JTextField TFLabelPrecioP;
     private javax.swing.JTextField TFNombreP;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

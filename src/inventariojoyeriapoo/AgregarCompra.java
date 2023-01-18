@@ -334,6 +334,9 @@ public class AgregarCompra extends javax.swing.JFrame {
             ps.setInt(3, Cantidad);
             ps.setString(4, timeStamp);
             ps.executeUpdate();
+            
+            
+            
             JOptionPane.showMessageDialog(null, "Registro guardado");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.toString());

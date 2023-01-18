@@ -141,6 +141,11 @@ public class CompraInterfaz extends javax.swing.JFrame {
 
         BotonEditarCom.setBackground(new java.awt.Color(255, 242, 204));
         BotonEditarCom.setText("Editar");
+        BotonEditarCom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEditarComActionPerformed(evt);
+            }
+        });
 
         LaberIDCompra.setText("ID de compra");
 
@@ -401,6 +406,11 @@ public class CompraInterfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,ex.toString());
         }
     }//GEN-LAST:event_ComprasMouseClicked
+
+    private void BotonEditarComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEditarComActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BotonEditarComActionPerformed
 
     /**
      * @param args the command line arguments
