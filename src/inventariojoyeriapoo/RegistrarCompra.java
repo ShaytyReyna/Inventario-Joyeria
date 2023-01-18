@@ -27,6 +27,8 @@ public class RegistrarCompra extends javax.swing.JFrame {
     public RegistrarCompra() {
         initComponents();
         this.setLocationRelativeTo(null);
+        CantidadTF.setVisible(false);
+        Compras.setVisible(false);
     }
    
     String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
@@ -45,7 +47,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
        
        int columnas;
        try{
-           
            Connection connection = DriverManager.getConnection(url,username,password);
             //ps= connection.prepareStatement("SELECT stock FROM inventario WHERE id_pr = ?");
             //ps.setInt(1, IDProducto);
@@ -84,7 +85,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
        
         try{
             int fila = Compras.getSelectedRow();
-            int cantidad= Integer.parseInt(Compras.getValueAt(fila, 0).toString());
+            //ViejaCantidad = Integer.parseInt(Compras.getValueAt(fila, 0).toString());
             
             cargarInventario(IDProducto);
             
@@ -94,13 +95,10 @@ public class RegistrarCompra extends javax.swing.JFrame {
             rs = ps.executeQuery();
             
             while(rs.next()){
-                TFIDCompra.setText(rs.getString("id_c"));
-                TFIDCompra.setEditable(false);
-                TFIDCompra.setEnabled(false);
-                
-                JtexNomCliCom.setText(rs.getString("id_pr"));
-                ViejaCantidad.setText(rs.getString("stock"));
-                JtexFechaCom.setText(rs.getString("fecha"));
+                CantidadTF.setText(rs.getString("stock"));
+                CantidadTF.setEditable(false);
+                CantidadTF.setEnabled(false);
+                CantidadTF.setVisible(false);
             }
            
         }catch(SQLException ex){
@@ -111,7 +109,8 @@ public class RegistrarCompra extends javax.swing.JFrame {
        try{
            cargarViejaCantidad(IDProducto);
             Connection connection = DriverManager.getConnection(url,username,password);
-            
+            ViejaCantidad = Integer.parseInt( CantidadTF.getText());
+
             ps= connection.prepareStatement("update inventario set stock= ? where id_pr = ?");
             int nuevaCantidad = Cantidad+ ViejaCantidad;
             ps.setInt(1, nuevaCantidad);
@@ -142,6 +141,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Compras = new javax.swing.JTable();
+        CantidadTF = new javax.swing.JTextField();
         MenuBar = new javax.swing.JMenuBar();
         JMenuInventario = new javax.swing.JMenu();
         ProductosITem = new javax.swing.JMenuItem();
@@ -219,6 +219,12 @@ public class RegistrarCompra extends javax.swing.JFrame {
             Compras.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        CantidadTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CantidadTFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FondoMoradoLayout = new javax.swing.GroupLayout(FondoMorado);
         FondoMorado.setLayout(FondoMoradoLayout);
         FondoMoradoLayout.setHorizontalGroup(
@@ -242,7 +248,9 @@ public class RegistrarCompra extends javax.swing.JFrame {
                             .addComponent(TFNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(FondoMoradoLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
         FondoMoradoLayout.setVerticalGroup(
@@ -261,7 +269,9 @@ public class RegistrarCompra extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(BotonAgregarP)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -374,10 +384,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
         int Cantidad = Integer.parseInt(TFLabelPrecioP.getText());
         
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
-     
-        
-        //ResultSet rs;
-        //ResultSetMetaData rsmd;
         
         try{
             Connection connection = DriverManager.getConnection(url,username,password);
@@ -458,6 +464,10 @@ public class RegistrarCompra extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ComprasMouseClicked
 
+    private void CantidadTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CantidadTFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -495,6 +505,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarP;
+    private javax.swing.JTextField CantidadTF;
     private javax.swing.JTable Compras;
     private javax.swing.JPanel FondoMorado;
     private javax.swing.JMenu JMenuCerrarSesion;
