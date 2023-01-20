@@ -321,10 +321,10 @@ public class AgregarCompra extends javax.swing.JFrame {
         
         try{
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            /*String username = "root";
-            String password = "Lechedefresa";*/
             String username = "root";
-            String password = "$usanA198";
+            String password = "Lechedefresa";
+            /*String username = "root";
+            String password = "$usanA198";*/
             
             Connection connection = DriverManager.getConnection(url,username,password);
             ps= connection.prepareStatement("INSERT INTO pedidos (nom_client, id_pr,cantidad, fecha) VALUES (?, ?, ?, ?)");

@@ -37,10 +37,10 @@ public class Pedidos extends javax.swing.JFrame {
         int columnas;
         try{
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            /*String username = "root";
-            String password = "Lechedefresa";*/
             String username = "root";
-            String password = "$usanA198";
+            String password = "Lechedefresa";
+             /*String username = "root";
+            String password = "$usanA198";*/
             Connection connection = DriverManager.getConnection(url,username,password);
             ps = connection.prepareStatement("SELECT * FROM pedidos");
             rs = ps.executeQuery();
@@ -83,7 +83,7 @@ public class Pedidos extends javax.swing.JFrame {
         IDProducto = new javax.swing.JTextField();
         Cantidad = new javax.swing.JTextField();
         Fecha = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
@@ -113,7 +113,15 @@ public class Pedidos extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nombre Cliente", "ID Producto", "Cantidad", "Fecha"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         Pedidos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PedidosMouseClicked(evt);
@@ -137,11 +145,11 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(248, 206, 204));
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setBackground(new java.awt.Color(248, 206, 204));
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
 
@@ -180,7 +188,7 @@ public class Pedidos extends javax.swing.JFrame {
                                     .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -217,7 +225,7 @@ public class Pedidos extends javax.swing.JFrame {
                             .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(74, 74, 74)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(81, 81, 81))))
@@ -323,9 +331,39 @@ public class Pedidos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int id = Integer.parseInt(IDPedido.getText());
+        PreparedStatement ps;
+        
+        try{
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            String username = "root";
+            String password = "Lechedefresa";
+            //String password = "$usanA198";
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps= connection.prepareStatement("DELETE FROM pedidos WHERE id_pe=?");
+            
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Pedido eliminado");
+            cargarTabla();
+            IDPedido.setText("");
+            ClientePedido.setText("");
+            IDProducto.setText("");
+            Cantidad.setText("");
+            Fecha.setText("");
+            
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_EliminarActionPerformed
 
     private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
         // TODO add your handling code here:
@@ -400,8 +438,8 @@ public class Pedidos extends javax.swing.JFrame {
             ResultSet rs;
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
             String username = "root";
-            /*String password = "Lechedefresa";*/
-            String password = "$usanA198";
+           String password = "Lechedefresa";
+             /*String password = "$usanA198";*/
             
             Connection connection = DriverManager.getConnection(url, username, password);
             ps = connection.prepareStatement("SELECT nom_client, id_pr, cantidad, fecha FROM pedidos WHERE id_pe=?");
@@ -461,11 +499,11 @@ public class Pedidos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Cantidad;
     private javax.swing.JTextField ClientePedido;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JTextField Fecha;
     private javax.swing.JTextField IDPedido;
     private javax.swing.JTextField IDProducto;
     private javax.swing.JTable Pedidos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

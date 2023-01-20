@@ -29,10 +29,10 @@ public class CompraInterfaz extends javax.swing.JFrame {
     }
     
     String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-    /*String username = "root";
-    String password = "Lechedefresa";*/
     String username = "root";
-    String password = "$usanA198";
+    String password = "Lechedefresa";
+    /*String username = "root";
+    String password = "$usanA198";*/
     PreparedStatement ps;
     ResultSet rs;
     ResultSetMetaData rsmd;
@@ -111,7 +111,15 @@ public class CompraInterfaz extends javax.swing.JFrame {
             new String [] {
                 "ID", "Nombre Cliente", "Cantidad", "Fecha"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         Compras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ComprasMouseClicked(evt);

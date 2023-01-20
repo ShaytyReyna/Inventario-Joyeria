@@ -28,13 +28,14 @@ public class RegistrarCompra extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         CantidadTF.setVisible(false);
-        Compras.setVisible(false);
+        Compras1.setVisible(false);
+        
     }
    
     String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
     String username = "root";
-    /*String password = "Lechedefresa";*/
-    String password = "$usanA198";
+    String password = "Lechedefresa";
+    //String password = "$usanA198";
     PreparedStatement ps;
     ResultSet rs;
     ResultSetMetaData rsmd;
@@ -42,7 +43,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
      int ViejaCantidad; 
      
    private void cargarInventario(int IDProducto){
-       DefaultTableModel modeloTabla = (DefaultTableModel)Compras.getModel();
+       DefaultTableModel modeloTabla = (DefaultTableModel)Compras1.getModel();
        modeloTabla.setRowCount(0);
        
        int columnas;
@@ -84,7 +85,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
    private void cargarViejaCantidad(int IDProducto){
        
         try{
-            int fila = Compras.getSelectedRow();
+            int fila = Compras1.getSelectedRow();
             //ViejaCantidad = Integer.parseInt(Compras.getValueAt(fila, 0).toString());
             
             cargarInventario(IDProducto);
@@ -140,7 +141,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
         BotonAgregarP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Compras = new javax.swing.JTable();
+        Compras1 = new javax.swing.JTable();
         CantidadTF = new javax.swing.JTextField();
         MenuBar = new javax.swing.JMenuBar();
         JMenuInventario = new javax.swing.JMenu();
@@ -190,7 +191,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("REGISTRAR NUEVA COMPRA ");
 
-        Compras.setModel(new javax.swing.table.DefaultTableModel(
+        Compras1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -209,14 +210,14 @@ public class RegistrarCompra extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Compras.addMouseListener(new java.awt.event.MouseAdapter() {
+        Compras1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ComprasMouseClicked(evt);
+                Compras1MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(Compras);
-        if (Compras.getColumnModel().getColumnCount() > 0) {
-            Compras.getColumnModel().getColumn(0).setResizable(false);
+        jScrollPane1.setViewportView(Compras1);
+        if (Compras1.getColumnModel().getColumnCount() > 0) {
+            Compras1.getColumnModel().getColumn(0).setResizable(false);
         }
 
         CantidadTF.addActionListener(new java.awt.event.ActionListener() {
@@ -240,38 +241,41 @@ public class RegistrarCompra extends javax.swing.JFrame {
                     .addGroup(FondoMoradoLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LabelNombreP, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(LabelNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 183, Short.MAX_VALUE)
                             .addComponent(PrecioP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(39, 39, 39)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(TFLabelPrecioP, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TFNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(FondoMoradoLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(136, 136, 136)
                         .addComponent(CantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoMoradoLayout.createSequentialGroup()
+                .addGap(0, 14, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(549, 549, 549))
         );
         FondoMoradoLayout.setVerticalGroup(
             FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FondoMoradoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoMoradoLayout.createSequentialGroup()
                 .addContainerGap(87, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(61, 61, 61)
-                .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TFNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelNombreP))
-                .addGap(18, 18, 18)
-                .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TFLabelPrecioP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PrecioP))
-                .addGap(51, 51, 51)
-                .addComponent(BotonAgregarP)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(FondoMoradoLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(61, 61, 61)
+                        .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TFNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelNombreP))
+                        .addGap(18, 18, 18)
+                        .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TFLabelPrecioP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PrecioP))
+                        .addGap(51, 51, 51)
+                        .addComponent(BotonAgregarP)
+                        .addGap(30, 30, 30)
+                        .addComponent(CantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -460,9 +464,9 @@ public class RegistrarCompra extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ListaComprasItemActionPerformed
 
-    private void ComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComprasMouseClicked
+    private void Compras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Compras1MouseClicked
         
-    }//GEN-LAST:event_ComprasMouseClicked
+    }//GEN-LAST:event_Compras1MouseClicked
 
     private void CantidadTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadTFActionPerformed
         // TODO add your handling code here:
@@ -506,7 +510,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarP;
     private javax.swing.JTextField CantidadTF;
-    private javax.swing.JTable Compras;
+    private javax.swing.JTable Compras1;
     private javax.swing.JPanel FondoMorado;
     private javax.swing.JMenu JMenuCerrarSesion;
     private javax.swing.JMenu JMenuCompra;
