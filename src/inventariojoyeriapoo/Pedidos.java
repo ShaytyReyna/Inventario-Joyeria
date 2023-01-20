@@ -38,9 +38,8 @@ public class Pedidos extends javax.swing.JFrame {
         try{
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
             String username = "root";
-            String password = "Lechedefresa";
-             /*String username = "root";
-            String password = "$usanA198";*/
+            //String password = "Lechedefresa";
+            String password = "$usanA198";
             Connection connection = DriverManager.getConnection(url,username,password);
             ps = connection.prepareStatement("SELECT * FROM pedidos");
             rs = ps.executeQuery();
@@ -84,8 +83,8 @@ public class Pedidos extends javax.swing.JFrame {
         Cantidad = new javax.swing.JTextField();
         Fecha = new javax.swing.JTextField();
         Eliminar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Completar = new javax.swing.JButton();
+        modificar = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -153,11 +152,16 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(213, 232, 212));
-        jButton2.setText("Completar");
+        Completar.setBackground(new java.awt.Color(213, 232, 212));
+        Completar.setText("Completar");
 
-        jButton3.setBackground(new java.awt.Color(255, 242, 204));
-        jButton3.setText("Editar");
+        modificar.setBackground(new java.awt.Color(255, 242, 204));
+        modificar.setText("Guardar cambios");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,34 +170,39 @@ public class Pedidos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(IDPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ClientePedido)
-                                    .addComponent(IDProducto)
-                                    .addComponent(Cantidad)
-                                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(IDPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(ClientePedido)
+                                            .addComponent(IDProducto)
+                                            .addComponent(Cantidad)
+                                            .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(55, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(Completar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,12 +232,13 @@ public class Pedidos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(74, 74, 74)
+                        .addGap(83, 83, 83)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(81, 81, 81))))
+                            .addComponent(Completar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))))
         );
 
         jMenu1.setText("Inventario");
@@ -339,8 +349,8 @@ public class Pedidos extends javax.swing.JFrame {
         try{
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
             String username = "root";
-            String password = "Lechedefresa";
-            //String password = "$usanA198";
+            //String password = "Lechedefresa";
+            String password = "$usanA198";
             
             Connection connection = DriverManager.getConnection(url,username,password);
             ps= connection.prepareStatement("DELETE FROM pedidos WHERE id_pe=?");
@@ -433,8 +443,8 @@ public class Pedidos extends javax.swing.JFrame {
             ResultSet rs;
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
             String username = "root";
-           String password = "Lechedefresa";
-             /*String password = "$usanA198";*/
+            //String password = "Lechedefresa";
+            String password = "$usanA198";
             
             Connection connection = DriverManager.getConnection(url, username, password);
             ps = connection.prepareStatement("SELECT nom_client, id_pr, cantidad, fecha FROM pedidos WHERE id_pe=?");
@@ -455,6 +465,43 @@ public class Pedidos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
     }//GEN-LAST:event_PedidosMouseClicked
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        int id = Integer.parseInt(IDPedido.getText());
+        /*****************************************/
+        String nombre = ClientePedido.getText();
+        int IDPr = Integer.parseInt( IDProducto.getText());
+        int Canti = Integer.parseInt(Cantidad.getText());
+        String fecha= Fecha.getText();
+        PreparedStatement ps;
+        
+        try{
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            String username = "root";
+            //String password = "Lechedefresa";
+            String password = "$usanA198";
+            
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps= connection.prepareStatement("UPDATE pedidos SET nom_client=?,id_pr=?,cantidad=?, fecha=? WHERE id_pe = ?");
+            ps.setString(1, nombre);
+            ps.setInt(2,IDPr );
+            ps.setInt(3, Canti);
+            ps.setString(4, fecha);
+            ps.setInt(5, id);
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Registro de pedido modificada");
+            cargarTabla();
+            IDPedido.setText("");
+            ClientePedido.setText("");
+            IDProducto.setText("");
+            Cantidad.setText("");
+            Fecha.setText("");  
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }      
+    }//GEN-LAST:event_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,13 +541,12 @@ public class Pedidos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Cantidad;
     private javax.swing.JTextField ClientePedido;
+    private javax.swing.JButton Completar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JTextField Fecha;
     private javax.swing.JTextField IDPedido;
     private javax.swing.JTextField IDProducto;
     private javax.swing.JTable Pedidos;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -519,5 +565,6 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modificar;
     // End of variables declaration//GEN-END:variables
 }
