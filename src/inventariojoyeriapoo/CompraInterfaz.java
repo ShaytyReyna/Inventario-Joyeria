@@ -86,6 +86,9 @@ public class CompraInterfaz extends javax.swing.JFrame {
         BotonEditarCom = new javax.swing.JButton();
         TFIDCompra = new javax.swing.JTextField();
         LaberIDCompra = new javax.swing.JLabel();
+        CantidadTF = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Compras1 = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -159,6 +162,38 @@ public class CompraInterfaz extends javax.swing.JFrame {
 
         LaberIDCompra.setText("ID de compra");
 
+        CantidadTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CantidadTFActionPerformed(evt);
+            }
+        });
+
+        Compras1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Cantidad anterior"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Compras1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Compras1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Compras1);
+
         javax.swing.GroupLayout JPanel2Layout = new javax.swing.GroupLayout(JPanel2);
         JPanel2.setLayout(JPanel2Layout);
         JPanel2Layout.setHorizontalGroup(
@@ -166,41 +201,48 @@ public class CompraInterfaz extends javax.swing.JFrame {
             .addGroup(JPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
                 .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanel2Layout.createSequentialGroup()
-                        .addComponent(LaberIDCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(TFIDCompra))
-                    .addGroup(JPanel2Layout.createSequentialGroup()
-                        .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLabelCanCom)
-                            .addComponent(JLabelFechaCom))
-                        .addGap(73, 73, 73)
-                        .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JtexFechaCom)
-                            .addComponent(JtexCantCom)))
-                    .addGroup(JPanel2Layout.createSequentialGroup()
-                        .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BotonEliminarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLabelNomCliCom))
+                        .addGap(67, 67, 67)
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(JtexIDPro))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotonEditarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(11, 11, 11)))))
-                .addGap(23, 23, 23))
+                                .addComponent(LaberIDCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(TFIDCompra))
+                            .addGroup(JPanel2Layout.createSequentialGroup()
+                                .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JLabelCanCom)
+                                    .addComponent(JLabelFechaCom))
+                                .addGap(73, 73, 73)
+                                .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JtexFechaCom)
+                                    .addComponent(JtexCantCom)))
+                            .addGroup(JPanel2Layout.createSequentialGroup()
+                                .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(BotonEliminarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JLabelNomCliCom))
+                                .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(JPanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JtexIDPro))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BotonEditarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(11, 11, 11)))))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
         );
         JPanel2Layout.setVerticalGroup(
             JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanel2Layout.createSequentialGroup()
-                .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel2Layout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel2Layout.createSequentialGroup()
+                .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JPanel2Layout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -222,7 +264,13 @@ public class CompraInterfaz extends javax.swing.JFrame {
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BotonEliminarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BotonEditarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CantidadTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPanel2Layout.createSequentialGroup()
+                        .addContainerGap(15, Short.MAX_VALUE)
+                        .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -311,7 +359,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(JPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -320,7 +368,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(JPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -428,34 +476,89 @@ public class CompraInterfaz extends javax.swing.JFrame {
                 JtexCantCom.setText(rs.getString("cantidad"));
                 JtexFechaCom.setText(rs.getString("fecha"));
             }
+            ViejaCantidad = Integer.parseInt( JtexCantCom.getText());
            
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,ex.toString());
         }
     }//GEN-LAST:event_ComprasMouseClicked
     
+    private void cargarInventario(int IDProducto){
+       DefaultTableModel modeloTabla = (DefaultTableModel)Compras1.getModel();
+       modeloTabla.setRowCount(0);
+       
+       int columnas;
+       try{
+           Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT stock FROM inventario WHERE id_pr = ?");
+            ps.setInt(1, IDProducto);
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for(int i = 0; i<columnas; i++){
+                    fila[i] =rs.getObject(i+1);
+                }
+                modeloTabla.addRow(fila);
+            }
+             
+            //pasar estas dos ultimas lineas a otro metodo para poder 
+            //despues llamar en el que estamos ahorita y asi re guardar 
+            //lo que tenemos en la vieja cantidad
+            //int f = Compras.getSelectedRow();
+            //ViejaCantidad = Integer.parseInt(Compras.getValueAt(f, 0).toString());
+            
+       }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+       }  
+   }
+    
+    private void cargarViejaCantidad(int IDProducto){
+       
+        try{
+            int fila = Compras1.getSelectedRow();
+            cargarInventario(IDProducto);
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT stock FROM inventario WHERE id_pr = ?"); 
+            ps.setInt(1, IDProducto);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                CantidadTF.setText(rs.getString("stock"));
+                CantidadTF.setEditable(false);
+                CantidadTF.setEnabled(false);
+                CantidadTF.setVisible(false);
+            }
+           
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+   }
     private void actualizarInventario(int IDProducto, int Cantidad){
        try{
            //cargarInventario(IDProducto);
             Connection connection = DriverManager.getConnection(url,username,password);
             //ViejaCantidad 
-            int NuevaCantidad = Integer.parseInt( JtexCantCom.getText());
+            int actualI = Integer.parseInt( CantidadTF.getText());
             
-            int antiguaI, actualI, nuevaI;
+            int antiguaI=0, nuevaI=0;
+            
+            antiguaI = actualI - ViejaCantidad;
+            nuevaI= antiguaI + Cantidad;
 /* 
-            ViejaCantidad= la cantidad que se compro
-            ´por lo que es lo que se sumo a inventario
+            ViejaCantidad= la cantidad que se compro por lo que es lo que se sumo a inventario
             NuevaCantidad = lo que se modifico en compras 
             
             
             antiguaI = a lo que tenia inventario antes de la compra
             actualI = lo que tiene ahora inventario esto hay que sacarlo de otra funcion
             
-            nuevaI = lo que vamos a cambiar en  
+            nuevaI = lo que vamos a cambiar en  inventario 
             */
             ps= connection.prepareStatement("update inventario set stock= ? where id_pr = ?");
-            int nuevaCantidad = Cantidad+ ViejaCantidad;
-            ps.setInt(1, nuevaCantidad);
+            ps.setInt(1, nuevaI);
             ps.setInt(2, IDProducto);
             ps.executeUpdate();
             
@@ -481,7 +584,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
             ps.executeUpdate();
             
             /***********************************************************************************/
-            //actualizarInventario(IDProducto,Cantidad);
+            actualizarInventario(IDProducto,Cantidad);
             
             /**************************************************************************************/
             JOptionPane.showMessageDialog(null, "Registro de compra modificada");
@@ -496,6 +599,14 @@ public class CompraInterfaz extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_BotonEditarComActionPerformed
+
+    private void CantidadTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CantidadTFActionPerformed
+
+    private void Compras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Compras1MouseClicked
+
+    }//GEN-LAST:event_Compras1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -535,7 +646,9 @@ public class CompraInterfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonEditarCom;
     private javax.swing.JButton BotonEliminarCom;
+    private javax.swing.JTextField CantidadTF;
     private javax.swing.JTable Compras;
+    private javax.swing.JTable Compras1;
     private javax.swing.JLabel JLabelCanCom;
     private javax.swing.JLabel JLabelFechaCom;
     private javax.swing.JLabel JLabelNomCliCom;
@@ -557,5 +670,6 @@ public class CompraInterfaz extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
