@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.ResultSetMetaData;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -79,6 +78,15 @@ public class Inventario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Inventario = new javax.swing.JTable();
+        botonEliminarInventario = new javax.swing.JButton();
+        MostrarID = new javax.swing.JTextField();
+        Productos = new javax.swing.JTextField();
+        Precio = new javax.swing.JTextField();
+        Stock = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -127,7 +135,34 @@ public class Inventario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        Inventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InventarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Inventario);
+
+        botonEliminarInventario.setBackground(new java.awt.Color(248, 206, 204));
+        botonEliminarInventario.setText("Eliminar");
+        botonEliminarInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarInventarioActionPerformed(evt);
+            }
+        });
+
+        Stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StockActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("ID PRODUCTO");
+
+        jLabel2.setText("PRODUCTO");
+
+        jLabel3.setText("PRECIO");
+
+        jLabel4.setText("STOCK");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,14 +171,53 @@ public class Inventario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonEliminarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Precio)
+                            .addComponent(Stock)
+                            .addComponent(Productos)
+                            .addComponent(MostrarID, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MostrarID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Productos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonEliminarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         jMenu1.setText("Inventario");
@@ -232,8 +306,8 @@ public class Inventario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,12 +320,37 @@ public class Inventario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        Inventario in = new Inventario();
+        in.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+        CompraInterfaz CI = new CompraInterfaz();
+        CI.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        AgregarProducto NewProd = new AgregarProducto();
+        NewProd.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
@@ -267,23 +366,12 @@ public class Inventario extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         // TODO add your handling code here:
-        Inventario in = new Inventario();
-        in.setVisible(true);
+        InicioSesion IS = new InicioSesion();
+        IS.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
-
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu3ActionPerformed
-
-    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        // TODO add your handling code here:
-        AgregarProducto NewProd = new AgregarProducto();
-        NewProd.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jMenuItem19ActionPerformed
+    }//GEN-LAST:event_jMenu4MouseClicked
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
         // TODO add your handling code here:
@@ -292,19 +380,61 @@ public class Inventario extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenu4ActionPerformed
 
-    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+    private void InventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseClicked
         // TODO add your handling code here:
-        InicioSesion IS = new InicioSesion();
-        IS.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jMenu4MouseClicked
+        String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+        String username = "root";
+        //String password = "NRAmimis&";
+        String password = "$usanA198";
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            int fila = Inventario.getSelectedRow();
+            int id = Integer.parseInt(Inventario.getValueAt(fila, 0).toString());
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT  productos, precio, stock FROM inventario WHERE id_pr=?");
+            ps.setInt(1,id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                MostrarID.setText(String.valueOf(id));
+                Productos.setText(rs.getString("productos"));
+                Precio.setText(rs.getString("precio"));
+                Stock.setText(rs.getString("stock"));
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+    }//GEN-LAST:event_InventarioMouseClicked
 
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+    private void botonEliminarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarInventarioActionPerformed
+       
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            String username = "root";
+            //String password = "NRAmimis&";
+            String password = "$usanA198";
+            int id = Integer.parseInt(MostrarID.getText());
+            try {
+                Connection connection = DriverManager.getConnection(url,username,password);
+
+                PreparedStatement pps= connection.prepareStatement("DELETE FROM inventario WHERE id_pr=?");
+                pps.setInt(1, id);
+                pps.executeUpdate();
+                JOptionPane.showMessageDialog(null,"Producto eliminado");
+                cargarTabla();//funcion para mostrar la tabla
+                MostrarID.setText("");
+                Productos.setText("");
+                Precio.setText("");
+                Stock.setText("");
+            } catch (SQLException ex) {
+                //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,ex.toString());
+            }
+
+    }//GEN-LAST:event_botonEliminarInventarioActionPerformed
+
+    private void StockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StockActionPerformed
         // TODO add your handling code here:
-        CompraInterfaz CI = new CompraInterfaz();
-        CI.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
+    }//GEN-LAST:event_StockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,6 +473,15 @@ public class Inventario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Inventario;
+    private javax.swing.JTextField MostrarID;
+    private javax.swing.JTextField Precio;
+    private javax.swing.JTextField Productos;
+    private javax.swing.JTextField Stock;
+    private javax.swing.JButton botonEliminarInventario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

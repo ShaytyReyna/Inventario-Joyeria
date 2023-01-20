@@ -4,12 +4,38 @@
  */
 package inventariojoyeriapoo;
 
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+
 /**
  *
  * @author Sara.Reyna
  */
-public class PedidosClass {
-    public int ID_Pe;
+public class PedidosClass extends DefaultTableCellRenderer {
+private Component componente;
+
+    
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        componente = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); 
+        
+        if (table.getValueAt(row, 5).equals(1)) {
+            componente.setBackground(Color.green);
+            componente.setForeground(Color.BLACK);
+        }else{
+            componente.setBackground(Color.white);
+            componente.setForeground(Color.BLACK);
+        }
+              
+        return componente;
+    }
+    
+    
+    /*  public int ID_Pe;
     public String Nom_Client;
     //si ya no vamos a manejar distintos productos entonces quito el arreglo?
     public int ID_Pr;
@@ -23,5 +49,5 @@ public class PedidosClass {
     }
     public void CancelarPedido(){
         
-    }
-}
+    }*/
+ }

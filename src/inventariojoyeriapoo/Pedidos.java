@@ -26,6 +26,7 @@ public class Pedidos extends javax.swing.JFrame {
         initComponents();
         cargarTabla();
         this.setLocationRelativeTo(null);
+        Pedidos.setDefaultRenderer(Object.class,new PedidosClass());
     }
     
     private void cargarTabla(){
@@ -84,7 +85,7 @@ public class Pedidos extends javax.swing.JFrame {
         Fecha = new javax.swing.JTextField();
         Eliminar = new javax.swing.JButton();
         Completar = new javax.swing.JButton();
-        modificar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -104,17 +105,18 @@ public class Pedidos extends javax.swing.JFrame {
 
         Pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre Cliente", "ID Producto", "Cantidad", "Fecha"
+                "ID", "Nombre Cliente", "ID Producto", "Cantidad", "Fecha", "Completado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -154,14 +156,14 @@ public class Pedidos extends javax.swing.JFrame {
 
         Completar.setBackground(new java.awt.Color(213, 232, 212));
         Completar.setText("Completar");
-
-        modificar.setBackground(new java.awt.Color(255, 242, 204));
-        modificar.setText("Guardar cambios");
-        modificar.addActionListener(new java.awt.event.ActionListener() {
+        Completar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarActionPerformed(evt);
+                CompletarActionPerformed(evt);
             }
         });
+
+        jButton3.setBackground(new java.awt.Color(255, 242, 204));
+        jButton3.setText("Editar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,39 +172,34 @@ public class Pedidos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(IDPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(IDPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(ClientePedido)
-                                            .addComponent(IDProducto)
-                                            .addComponent(Cantidad)
-                                            .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(55, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(Completar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ClientePedido)
+                                    .addComponent(IDProducto)
+                                    .addComponent(Cantidad)
+                                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Completar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,13 +229,12 @@ public class Pedidos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(83, 83, 83)
+                        .addGap(74, 74, 74)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Completar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))))
+                            .addComponent(Completar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(81, 81, 81))))
         );
 
         jMenu1.setText("Inventario");
@@ -341,48 +337,13 @@ public class Pedidos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        // TODO add your handling code here:
-        int id = Integer.parseInt(IDPedido.getText());
-        PreparedStatement ps;
-        
-        try{
-            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            String username = "root";
-            //String password = "Lechedefresa";
-            String password = "$usanA198";
-            
-            Connection connection = DriverManager.getConnection(url,username,password);
-            ps= connection.prepareStatement("DELETE FROM pedidos WHERE id_pe=?");
-            ps.setInt(1, id);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Pedido eliminado");
-            cargarTabla();
-            IDPedido.setText("");
-            ClientePedido.setText("");
-            IDProducto.setText("");
-            Cantidad.setText("");
-            Fecha.setText("");  
-            
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, ex.toString());
-        }
-    }//GEN-LAST:event_EliminarActionPerformed
-
-    private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaActionPerformed
-
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
         Inventario in = new Inventario();
         in.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
         dispose();
@@ -393,28 +354,24 @@ public class Pedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
         AgregarCompra AP = new AgregarCompra();
         AP.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        // TODO add your handling code here:
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        // TODO add your handling code here:
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
@@ -428,15 +385,13 @@ public class Pedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // TODO add your handling code here:
         CompraInterfaz CI = new CompraInterfaz();
         CI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void PedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PedidosMouseClicked
-        // TODO add your handling code here:
-         try {
+        try {
             int fila = Pedidos.getSelectedRow();
             int id = Integer.parseInt(Pedidos.getValueAt(fila, 0).toString());
             PreparedStatement ps;
@@ -445,7 +400,7 @@ public class Pedidos extends javax.swing.JFrame {
             String username = "root";
             //String password = "Lechedefresa";
             String password = "$usanA198";
-            
+
             Connection connection = DriverManager.getConnection(url, username, password);
             ps = connection.prepareStatement("SELECT nom_client, id_pr, cantidad, fecha FROM pedidos WHERE id_pe=?");
             ps.setInt(1, id);
@@ -454,54 +409,78 @@ public class Pedidos extends javax.swing.JFrame {
                 IDPedido.setText(String.valueOf(id));
                 IDPedido.setEditable(false);
                 IDPedido.setEnabled(false);
-                
+
                 ClientePedido.setText(rs.getString("nom_client"));
                 IDProducto.setText(rs.getString("id_pr"));
                 Cantidad.setText(rs.getString("cantidad"));
                 Fecha.setText(rs.getString("fecha"));
             }
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.toString());
         }
     }//GEN-LAST:event_PedidosMouseClicked
 
-    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+    private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FechaActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         int id = Integer.parseInt(IDPedido.getText());
-        /*****************************************/
-        String nombre = ClientePedido.getText();
-        int IDPr = Integer.parseInt( IDProducto.getText());
-        int Canti = Integer.parseInt(Cantidad.getText());
-        String fecha= Fecha.getText();
         PreparedStatement ps;
-        
+
         try{
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
             String username = "root";
             //String password = "Lechedefresa";
             String password = "$usanA198";
-            
-            
+
             Connection connection = DriverManager.getConnection(url,username,password);
-            ps= connection.prepareStatement("UPDATE pedidos SET nom_client=?,id_pr=?,cantidad=?, fecha=? WHERE id_pe = ?");
-            ps.setString(1, nombre);
-            ps.setInt(2,IDPr );
-            ps.setInt(3, Canti);
-            ps.setString(4, fecha);
-            ps.setInt(5, id);
+            ps= connection.prepareStatement("DELETE FROM pedidos WHERE id_pe=?");
+            ps.setInt(1, id);
             ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Registro de pedido modificada");
+
+            JOptionPane.showMessageDialog(null, "Pedido eliminado");
             cargarTabla();
             IDPedido.setText("");
             ClientePedido.setText("");
             IDProducto.setText("");
             Cantidad.setText("");
-            Fecha.setText("");  
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e.toString());
-        }      
-    }//GEN-LAST:event_modificarActionPerformed
+            Fecha.setText("");
+
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void CompletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompletarActionPerformed
+        int id = Integer.parseInt(IDPedido.getText());
+        PreparedStatement ps;
+
+        try{
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            String username = "root";
+            //String password = "Lechedefresa";
+            String password = "$usanA198";
+
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps= connection.prepareStatement("UPDATE pedidos SET completado = 1 WHERE id_pe=?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Pedido Completado!");
+            cargarTabla();
+            IDPedido.setText("");
+            ClientePedido.setText("");
+            IDProducto.setText("");
+            Cantidad.setText("");
+            Fecha.setText("");
+
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+
+    }//GEN-LAST:event_CompletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -547,6 +526,7 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JTextField IDPedido;
     private javax.swing.JTextField IDProducto;
     private javax.swing.JTable Pedidos;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -565,6 +545,5 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton modificar;
     // End of variables declaration//GEN-END:variables
 }
