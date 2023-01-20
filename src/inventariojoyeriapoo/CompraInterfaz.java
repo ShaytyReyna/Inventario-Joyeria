@@ -30,9 +30,8 @@ public class CompraInterfaz extends javax.swing.JFrame {
     
     String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
     String username = "root";
-    String password = "Lechedefresa";
-    /*String username = "root";
-    String password = "$usanA198";*/
+    //String password = "Lechedefresa";
+    String password = "$usanA198";
     PreparedStatement ps;
     ResultSet rs;
     ResultSetMetaData rsmd;
@@ -380,6 +379,26 @@ public class CompraInterfaz extends javax.swing.JFrame {
 
     private void BotonEliminarComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarComActionPerformed
         // TODO add your handling code here:
+        
+        // TODO add your handling code here:
+        int id = Integer.parseInt(TFIDCompra.getText());
+        
+        try{
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps= connection.prepareStatement("DELETE FROM compras WHERE id_c=?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Pedido eliminado");
+            cargarTabla();
+            TFIDCompra.setText("");
+            JtexNomCliCom.setText("");
+            JtexCantCom.setText("");
+            JtexFechaCom.setText("");
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
     }//GEN-LAST:event_BotonEliminarComActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed

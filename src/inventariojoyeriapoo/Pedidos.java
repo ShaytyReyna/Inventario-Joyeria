@@ -344,25 +344,20 @@ public class Pedidos extends javax.swing.JFrame {
             
             Connection connection = DriverManager.getConnection(url,username,password);
             ps= connection.prepareStatement("DELETE FROM pedidos WHERE id_pe=?");
-            
             ps.setInt(1, id);
             ps.executeUpdate();
+            
             JOptionPane.showMessageDialog(null, "Pedido eliminado");
             cargarTabla();
             IDPedido.setText("");
             ClientePedido.setText("");
             IDProducto.setText("");
             Cantidad.setText("");
-            Fecha.setText("");
-            
+            Fecha.setText("");  
             
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex.toString());
         }
-        
-        
-        
-        
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void FechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaActionPerformed
