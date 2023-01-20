@@ -76,7 +76,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
    private void cargarViejaCantidad(int IDProducto){
        
         try{
-            int fila = Compras1.getSelectedRow();
+            //int fila = Compras1.getSelectedRow();
             //ViejaCantidad = Integer.parseInt(Compras.getValueAt(fila, 0).toString());
             
             cargarInventario(IDProducto);

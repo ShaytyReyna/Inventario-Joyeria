@@ -379,14 +379,12 @@ public class CompraInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
         dispose();
@@ -397,28 +395,24 @@ public class CompraInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        // TODO add your handling code here:
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
         AgregarCompra AP = new AgregarCompra();
         AP.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        // TODO add your handling code here:
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        // TODO add your handling code here:
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
@@ -450,14 +444,12 @@ public class CompraInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonEliminarComActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // TODO add your handling code here:
         CompraInterfaz CI = new CompraInterfaz();
         CI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void ComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComprasMouseClicked
-        // TODO add your handling code here:
         try{
             int fila = Compras.getSelectedRow();
             int id= Integer.parseInt(Compras.getValueAt(fila, 0).toString());
@@ -538,12 +530,13 @@ public class CompraInterfaz extends javax.swing.JFrame {
    }
     private void actualizarInventario(int IDProducto, int Cantidad){
        try{
-           //cargarInventario(IDProducto);
+           cargarViejaCantidad(IDProducto);
+           
             Connection connection = DriverManager.getConnection(url,username,password);
             //ViejaCantidad 
             int actualI = Integer.parseInt( CantidadTF.getText());
             
-            int antiguaI=0, nuevaI=0;
+            int antiguaI, nuevaI;
             
             antiguaI = actualI - ViejaCantidad;
             nuevaI= antiguaI + Cantidad;
@@ -589,10 +582,10 @@ public class CompraInterfaz extends javax.swing.JFrame {
             /**************************************************************************************/
             JOptionPane.showMessageDialog(null, "Registro de compra modificada");
             cargarTabla();
-            TFIDCompra.setText("");
-            JtexIDPro.setText("");
-            JtexCantCom.setText("");
-            JtexFechaCom.setText("");
+            TFIDCompra.setText(".");
+            JtexIDPro.setText(".");
+            JtexCantCom.setText(".");
+            JtexFechaCom.setText(".");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.toString());
         }      

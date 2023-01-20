@@ -36,7 +36,8 @@ public class InventarioJoyeriaPOO {
         try{
             String url = "jdbc:mysql://localhost:3306/Inventario_Joyeria";
             String username = "root";
-            String password = "Lechedefresa";
+            ///String password = "Lechedefresa";
+            String password = "$usanA198";
             Connection connection = DriverManager.getConnection(url,username,password);
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Inventario");
