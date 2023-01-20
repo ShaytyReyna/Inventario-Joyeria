@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,6 +37,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
     PreparedStatement ps;
     ResultSet rs;
     ResultSetMetaData rsmd;
+    int ViejaCantidad; 
     
     private void cargarTabla(){
         DefaultTableModel modeloTabla = (DefaultTableModel)Compras.getModel();
@@ -78,7 +81,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
         JLabelFechaCom = new javax.swing.JLabel();
         JtexCantCom = new javax.swing.JTextField();
         JtexFechaCom = new javax.swing.JTextField();
-        JtexNomCliCom = new javax.swing.JTextField();
+        JtexIDPro = new javax.swing.JTextField();
         BotonEliminarCom = new javax.swing.JButton();
         BotonEditarCom = new javax.swing.JButton();
         TFIDCompra = new javax.swing.JTextField();
@@ -126,7 +129,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Compras);
 
-        JLabelNomCliCom.setText("Nombre del Cliente");
+        JLabelNomCliCom.setText("ID del producto");
 
         JLabelCanCom.setText("Cantidad");
 
@@ -184,7 +187,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(JtexNomCliCom))
+                                .addComponent(JtexIDPro))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(BotonEditarCom, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,7 +209,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JLabelNomCliCom)
-                            .addComponent(JtexNomCliCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtexIDPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(JPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JLabelCanCom)
@@ -308,7 +311,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(JPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -378,9 +381,6 @@ public class CompraInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_JtexCantComActionPerformed
 
     private void BotonEliminarComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarComActionPerformed
-        // TODO add your handling code here:
-        
-        // TODO add your handling code here:
         int id = Integer.parseInt(TFIDCompra.getText());
         
         try{
@@ -392,7 +392,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Pedido eliminado");
             cargarTabla();
             TFIDCompra.setText("");
-            JtexNomCliCom.setText("");
+            JtexIDPro.setText("");
             JtexCantCom.setText("");
             JtexFechaCom.setText("");
             
@@ -424,7 +424,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
                 TFIDCompra.setEditable(false);
                 TFIDCompra.setEnabled(false);
                 
-                JtexNomCliCom.setText(rs.getString("id_pr"));
+                JtexIDPro.setText(rs.getString("id_pr"));
                 JtexCantCom.setText(rs.getString("cantidad"));
                 JtexFechaCom.setText(rs.getString("fecha"));
             }
@@ -433,9 +433,67 @@ public class CompraInterfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,ex.toString());
         }
     }//GEN-LAST:event_ComprasMouseClicked
-
+    
+    private void actualizarInventario(int IDProducto, int Cantidad){
+       try{
+           //cargarInventario(IDProducto);
+            Connection connection = DriverManager.getConnection(url,username,password);
+            //ViejaCantidad 
+            int NuevaCantidad = Integer.parseInt( JtexCantCom.getText());
+            
+            int antiguaI, actualI, nuevaI;
+/* 
+            ViejaCantidad= la cantidad que se compro
+            ´por lo que es lo que se sumo a inventario
+            NuevaCantidad = lo que se modifico en compras 
+            
+            
+            antiguaI = a lo que tenia inventario antes de la compra
+            actualI = lo que tiene ahora inventario esto hay que sacarlo de otra funcion
+            
+            nuevaI = lo que vamos a cambiar en  
+            */
+            ps= connection.prepareStatement("update inventario set stock= ? where id_pr = ?");
+            int nuevaCantidad = Cantidad+ ViejaCantidad;
+            ps.setInt(1, nuevaCantidad);
+            ps.setInt(2, IDProducto);
+            ps.executeUpdate();
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }  
+       
+   }
     private void BotonEditarComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEditarComActionPerformed
-        // TODO add your handling code here:
+        int id = Integer.parseInt(TFIDCompra.getText());
+        /*****************************************/
+        int IDProducto = Integer.parseInt(JtexIDPro.getText());
+        int Cantidad = Integer.parseInt(JtexCantCom.getText());
+        String fecha= JtexFechaCom.getText();
+        
+        try{
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps= connection.prepareStatement("UPDATE compras SET id_pr=?,cantidad=?, fecha=? WHERE id_c = ?");
+            ps.setInt(1, IDProducto);
+            ps.setInt(2, Cantidad);
+            ps.setString(3, fecha);
+            ps.setInt(4, id);
+            ps.executeUpdate();
+            
+            /***********************************************************************************/
+            //actualizarInventario(IDProducto,Cantidad);
+            
+            /**************************************************************************************/
+            JOptionPane.showMessageDialog(null, "Registro de compra modificada");
+            cargarTabla();
+            TFIDCompra.setText("");
+            JtexIDPro.setText("");
+            JtexCantCom.setText("");
+            JtexFechaCom.setText("");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.toString());
+        }      
+        
         
     }//GEN-LAST:event_BotonEditarComActionPerformed
 
@@ -484,7 +542,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
     private javax.swing.JPanel JPanel2;
     private javax.swing.JTextField JtexCantCom;
     private javax.swing.JTextField JtexFechaCom;
-    private javax.swing.JTextField JtexNomCliCom;
+    private javax.swing.JTextField JtexIDPro;
     private javax.swing.JLabel LaberIDCompra;
     private javax.swing.JTextField TFIDCompra;
     private javax.swing.JMenu jMenu1;

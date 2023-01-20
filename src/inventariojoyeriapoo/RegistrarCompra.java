@@ -49,15 +49,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
        int columnas;
        try{
            Connection connection = DriverManager.getConnection(url,username,password);
-            //ps= connection.prepareStatement("SELECT stock FROM inventario WHERE id_pr = ?");
-            //ps.setInt(1, IDProducto);
-            //Statement stm = connection.createStatement();
-            /*
-            ps = connection.prepareStatement("SELECT * FROM compras"); 
-            rs = ps.executeQuery();
-            rsmd = rs.getMetaData();
-            columnas = rsmd.getColumnCount();
-            */
             ps = connection.prepareStatement("SELECT stock FROM inventario WHERE id_pr = ?");
             ps.setInt(1, IDProducto);
             rs = ps.executeQuery();
@@ -383,7 +374,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_TFLabelPrecioPActionPerformed
 
     private void BotonAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarPActionPerformed
-        // TODO add your handling code here:
         int IDProducto = Integer.parseInt( TFNombreP.getText());
         int Cantidad = Integer.parseInt(TFLabelPrecioP.getText());
         
@@ -415,7 +405,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_ProductosITemActionPerformed
 
     private void NuevaCompraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCompraItemActionPerformed
-        // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
         dispose();
@@ -443,8 +432,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_NuevoPedidoItemActionPerformed
 
     private void JMenuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionActionPerformed
-        // TODO add your handling code here:
-        
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
