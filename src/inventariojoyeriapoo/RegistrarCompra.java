@@ -61,12 +61,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
                 }
                 modeloTabla.addRow(fila);
             }
-             
-            //pasar estas dos ultimas lineas a otro metodo para poder 
-            //despues llamar en el que estamos ahorita y asi re guardar 
-            //lo que tenemos en la vieja cantidad
-            //int f = Compras.getSelectedRow();
-            //ViejaCantidad = Integer.parseInt(Compras.getValueAt(f, 0).toString());
             
        }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.toString());
@@ -74,7 +68,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
    }
    
    private void cargarViejaCantidad(int IDProducto){
-       
         try{
             //int fila = Compras1.getSelectedRow();
             //ViejaCantidad = Integer.parseInt(Compras.getValueAt(fila, 0).toString());
