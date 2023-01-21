@@ -465,6 +465,7 @@ public class Inventario extends javax.swing.JFrame {
         ResultSetMetaData rsmd;
         int columnas;
         int id = Integer.parseInt(MostrarID.getText());
+        String nomProducto = Productos.getText();
         try{
             String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
             String username = "root";
@@ -472,8 +473,9 @@ public class Inventario extends javax.swing.JFrame {
             String password = "$usanA198";
             
             Connection connection = DriverManager.getConnection(url,username,password);
-            ps = connection.prepareStatement("SELECT * FROM inventario WHERE id_pr =?");
+            ps = connection.prepareStatement("SELECT * FROM inventario WHERE id_pr =? or productos= ?");
             ps.setInt(1, id);
+            ps.setString(2, nomProducto);
             rs = ps.executeQuery();
             rsmd = rs.getMetaData();
             columnas = rsmd.getColumnCount();
