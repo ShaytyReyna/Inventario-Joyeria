@@ -57,7 +57,6 @@ public class Inventario extends javax.swing.JFrame {
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,ex.toString());
         }
-        
     }
 
     /**
@@ -87,7 +86,8 @@ public class Inventario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        botonEliminarInventario1 = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        botonLimpiar = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -165,11 +165,21 @@ public class Inventario extends javax.swing.JFrame {
 
         jLabel4.setText("STOCK");
 
-        botonEliminarInventario1.setBackground(new java.awt.Color(51, 204, 255));
-        botonEliminarInventario1.setText("Buscar");
-        botonEliminarInventario1.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscar.setBackground(new java.awt.Color(51, 204, 255));
+        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        botonBuscar.setText("Buscar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarInventario1ActionPerformed(evt);
+                botonBuscarActionPerformed(evt);
+            }
+        });
+
+        botonLimpiar.setBackground(new java.awt.Color(102, 102, 255));
+        botonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        botonLimpiar.setText("Limpiar");
+        botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLimpiarActionPerformed(evt);
             }
         });
 
@@ -180,9 +190,9 @@ public class Inventario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Precio)
                             .addComponent(Stock)
@@ -196,19 +206,24 @@ public class Inventario extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonEliminarInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEliminarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(botonEliminarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(MostrarID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,14 +239,12 @@ public class Inventario extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonEliminarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(botonEliminarInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEliminarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))))
         );
 
         jMenu1.setText("Inventario");
@@ -335,28 +348,24 @@ public class Inventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
         Inventario in = new Inventario();
         in.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // TODO add your handling code here:
         CompraInterfaz CI = new CompraInterfaz();
         CI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
         dispose();
@@ -367,14 +376,12 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        // TODO add your handling code here:
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
         AgregarCompra AP = new AgregarCompra();
         AP.setVisible(true);
         dispose();
@@ -450,9 +457,46 @@ public class Inventario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_StockActionPerformed
 
-    private void botonEliminarInventario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarInventario1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarInventario1ActionPerformed
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        DefaultTableModel modeloTabla = (DefaultTableModel)Inventario.getModel();
+        modeloTabla.setRowCount(0);
+        PreparedStatement ps;
+        ResultSet rs;
+        ResultSetMetaData rsmd;
+        int columnas;
+        int id = Integer.parseInt(MostrarID.getText());
+        try{
+            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+            String username = "root";
+            //String password = "Lechedefresa";
+            String password = "$usanA198";
+            
+            Connection connection = DriverManager.getConnection(url,username,password);
+            ps = connection.prepareStatement("SELECT * FROM inventario WHERE id_pr =?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            rsmd = rs.getMetaData();
+            columnas = rsmd.getColumnCount();
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for (int i = 0; i < columnas; i++) {
+                    fila[i] = rs.getObject(i+1);
+                }
+                modeloTabla.addRow(fila);
+                
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
+        cargarTabla();
+        MostrarID.setText("");
+        Productos.setText("");
+        Precio.setText("");
+        Stock.setText("");
+    }//GEN-LAST:event_botonLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -495,8 +539,9 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JTextField Precio;
     private javax.swing.JTextField Productos;
     private javax.swing.JTextField Stock;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonEliminarInventario;
-    private javax.swing.JButton botonEliminarInventario1;
+    private javax.swing.JButton botonLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
