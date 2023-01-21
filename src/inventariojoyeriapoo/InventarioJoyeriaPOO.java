@@ -26,13 +26,12 @@ public class InventarioJoyeriaPOO {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        //PRuebaFrame FM = new PRuebaFrame()
-        //FM.setVisible(true);
 
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         
         testMySQLDriver();
+        /*
         try{
             String url = "jdbc:mysql://localhost:3306/Inventario_Joyeria";
             String username = "root";
@@ -59,7 +58,7 @@ public class InventarioJoyeriaPOO {
             
         }catch(SQLException ex){
             System.out.println(ex);
-        }
+        }*/
         
       
     }

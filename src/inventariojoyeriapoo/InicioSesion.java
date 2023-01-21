@@ -8,7 +8,10 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Sara.Reyna
+ * Sara.Reyna
+ * Eda Nolasco
+ * Nohemi Ramos
+ * 
  */
 public class InicioSesion extends javax.swing.JFrame {
     
@@ -68,14 +71,8 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(194, 196, 242));
         jPanel2.setLayout(null);
-
-        ContraField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContraFieldActionPerformed(evt);
-            }
-        });
         jPanel2.add(ContraField);
-        ContraField.setBounds(130, 120, 130, 23);
+        ContraField.setBounds(130, 120, 130, 22);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 20, 360, 260);
@@ -85,13 +82,7 @@ public class InicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ContraFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ContraFieldActionPerformed
-
     private void BotonListoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonListoMouseClicked
-        // TODO add your handling code here:
-        
         String Pass= new String(ContraField.getPassword());
         String Usu = new String(TFUsuario.getText());
         
@@ -105,7 +96,6 @@ public class InicioSesion extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "El usuario o contraseña es incorrecto");
         }
-        
     }//GEN-LAST:event_BotonListoMouseClicked
 
     /**

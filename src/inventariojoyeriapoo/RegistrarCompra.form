@@ -204,9 +204,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="TFNombreP">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TFNombrePActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LabelNombreP">
           <Properties>
@@ -217,9 +214,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TFLabelPrecioP">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TFLabelPrecioPActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="PrecioP">
           <Properties>
@@ -281,16 +275,10 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Compras1MouseClicked"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JTextField" name="CantidadTF">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CantidadTFActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

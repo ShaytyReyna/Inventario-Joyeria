@@ -16,8 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author Sara.Reyna
+ * Sara.Reyna
+ * Eda Nolasco
+ * Nohemi Ramos
  */
 public class RegistrarCompra extends javax.swing.JFrame {
 
@@ -69,9 +70,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
    
    private void cargarViejaCantidad(int IDProducto){
         try{
-            //int fila = Compras1.getSelectedRow();
-            //ViejaCantidad = Integer.parseInt(Compras.getValueAt(fila, 0).toString());
-            
             cargarInventario(IDProducto);
             
             Connection connection = DriverManager.getConnection(url,username,password);
@@ -144,20 +142,8 @@ public class RegistrarCompra extends javax.swing.JFrame {
 
         FondoMorado.setBackground(new java.awt.Color(194, 196, 242));
 
-        TFNombreP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFNombrePActionPerformed(evt);
-            }
-        });
-
         LabelNombreP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         LabelNombreP.setText("ID del producto comprado:");
-
-        TFLabelPrecioP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFLabelPrecioPActionPerformed(evt);
-            }
-        });
 
         PrecioP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         PrecioP.setText("Contidad comprada:");
@@ -194,21 +180,10 @@ public class RegistrarCompra extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Compras1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Compras1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(Compras1);
         if (Compras1.getColumnModel().getColumnCount() > 0) {
             Compras1.getColumnModel().getColumn(0).setResizable(false);
         }
-
-        CantidadTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CantidadTFActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout FondoMoradoLayout = new javax.swing.GroupLayout(FondoMorado);
         FondoMorado.setLayout(FondoMoradoLayout);
@@ -225,7 +200,7 @@ public class RegistrarCompra extends javax.swing.JFrame {
                     .addGroup(FondoMoradoLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LabelNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(LabelNombreP, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                             .addComponent(PrecioP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(39, 39, 39)
                         .addGroup(FondoMoradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -358,14 +333,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TFNombrePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFNombrePActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TFNombrePActionPerformed
-
-    private void TFLabelPrecioPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFLabelPrecioPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TFLabelPrecioPActionPerformed
-
     private void BotonAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarPActionPerformed
         int IDProducto = Integer.parseInt( TFNombreP.getText());
         int Cantidad = Integer.parseInt(TFLabelPrecioP.getText());
@@ -382,7 +349,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
             
             /***********************************************************************************/
             actualizarInventario(IDProducto,Cantidad);
-            
             /**************************************************************************************/
             JOptionPane.showMessageDialog(null, "Registro guardado");
         }catch(SQLException e){
@@ -391,7 +357,6 @@ public class RegistrarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonAgregarPActionPerformed
 
     private void ProductosITemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosITemActionPerformed
-        // TODO add your handling code here:
         Inventario in = new Inventario();
         in.setVisible(true);
         dispose();
@@ -404,22 +369,19 @@ public class RegistrarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_NuevaCompraItemActionPerformed
 
     private void NuevoProductoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoItemActionPerformed
-        // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevoProductoItemActionPerformed
 
     private void ListaPedidosItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaPedidosItemActionPerformed
-        // TODO add your handling code here:
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
         dispose();
     }//GEN-LAST:event_ListaPedidosItemActionPerformed
 
     private void NuevoPedidoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoPedidoItemActionPerformed
-        // TODO add your handling code here:
-        AgregarCompra AP = new AgregarCompra();
+        AgregarPedido AP = new AgregarPedido();
         AP.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevoPedidoItemActionPerformed
@@ -431,26 +393,16 @@ public class RegistrarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_JMenuCerrarSesionActionPerformed
 
     private void JMenuCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionMouseClicked
-        // TODO add your handling code here:
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
     }//GEN-LAST:event_JMenuCerrarSesionMouseClicked
 
     private void ListaComprasItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaComprasItemActionPerformed
-        // TODO add your handling code here:
         CompraInterfaz CI = new CompraInterfaz();
         CI.setVisible(true);
         dispose();
     }//GEN-LAST:event_ListaComprasItemActionPerformed
-
-    private void Compras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Compras1MouseClicked
-        
-    }//GEN-LAST:event_Compras1MouseClicked
-
-    private void CantidadTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CantidadTFActionPerformed
 
     /**
      * @param args the command line arguments

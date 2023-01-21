@@ -8,19 +8,26 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Sara.Reyna
+ * Sara.Reyna
+ * Eda Nolasco
+ * Nohemi Ramos
  */
 public class AgregarProducto extends javax.swing.JFrame {
 
     /**
      * Creates new form AgregarProducto
      */
+    
+    PreparedStatement ps;
+    String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+    String username = "root";
+    //String password = "Lechedefresa";
+    String password = "$usanA198";
+            
     public AgregarProducto() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -245,29 +252,25 @@ public class AgregarProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ProductosITemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosITemActionPerformed
-        // TODO add your handling code here:
         Inventario in = new Inventario();
         in.setVisible(true);
         dispose();
     }//GEN-LAST:event_ProductosITemActionPerformed
 
     private void NuevaCompraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCompraItemActionPerformed
-        // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevaCompraItemActionPerformed
 
     private void ListaPedidosItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaPedidosItemActionPerformed
-        // TODO add your handling code here:
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
         dispose();
     }//GEN-LAST:event_ListaPedidosItemActionPerformed
 
     private void NuevoPedidoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoPedidoItemActionPerformed
-        // TODO add your handling code here:
-        AgregarCompra AP = new AgregarCompra();
+        AgregarPedido AP = new AgregarPedido();
         AP.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevoPedidoItemActionPerformed
@@ -285,23 +288,13 @@ public class AgregarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_TFStockPActionPerformed
 
     private void BotonAgregarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarPActionPerformed
-        // TODO add your handling code here:
-        
         String productos = TFNombreP.getText();
         double precio = Double.parseDouble(TFLabelPrecioP.getText());
         int stock = Integer.parseInt(TFStockP.getText());
         
-        PreparedStatement ps;
-        
         try{
-            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            String username = "root";
-            String password = "Lechedefresa";
-              //String password = "$usanA198";
-            
             Connection connection = DriverManager.getConnection(url,username,password);
             ps= connection.prepareStatement("INSERT INTO inventario (productos, precio, stock) VALUES (?, ?, ?)");
-            
             ps.setString(1, productos);
             ps.setDouble(2, precio);
             ps.setInt(3, stock);
@@ -313,28 +306,24 @@ public class AgregarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonAgregarPActionPerformed
 
     private void NuevoProductoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoItemActionPerformed
-        // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevoProductoItemActionPerformed
 
     private void JMenuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionActionPerformed
-        // TODO add your handling code here:
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
     }//GEN-LAST:event_JMenuCerrarSesionActionPerformed
 
     private void JMenuCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionMouseClicked
-        // TODO add your handling code here:
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
     }//GEN-LAST:event_JMenuCerrarSesionMouseClicked
 
     private void ListaComprasItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaComprasItemActionPerformed
-        // TODO add your handling code here:
         CompraInterfaz CI = new CompraInterfaz();
         CI.setVisible(true);
         dispose();

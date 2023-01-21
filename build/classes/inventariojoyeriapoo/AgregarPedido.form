@@ -9,12 +9,12 @@
             <Property name="text" type="java.lang.String" value="Inventario"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="EliminarProductoITem">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItem_Lista_Productos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar Producto"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarProductoITemActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItem_Lista_ProductosActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -5,8 +5,9 @@
 package inventariojoyeriapoo;
  import javax.swing.JOptionPane;
 /**
- *
- * @author Sara.Reyna
+ *  Sara.Reyna
+ * Eda Nolasco
+ * Nohemi Ramos
  */
 public class Usuario {
         //atributos

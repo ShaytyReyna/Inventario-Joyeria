@@ -7,25 +7,31 @@ package inventariojoyeriapoo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Sara.Reyna
+ * Sara.Reyna
+ * Eda Nolasco
+ * Nohemi Ramos
  */
-public class AgregarCompra extends javax.swing.JFrame {
+public class AgregarPedido extends javax.swing.JFrame {
 
     /**
      * Creates new form AgregarCompra
      */
-    public AgregarCompra() {
+    
+    String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+    String username = "root";
+    //String password = "Lechedefresa";
+    String password = "$usanA198";
+    
+    PreparedStatement ps;
+            
+    public AgregarPedido() {
         this.setLocationRelativeTo(null);
         initComponents();
     }
@@ -50,7 +56,7 @@ public class AgregarCompra extends javax.swing.JFrame {
         JTCantidad = new javax.swing.JTextField();
         MenuBar = new javax.swing.JMenuBar();
         JMenuInventario = new javax.swing.JMenu();
-        EliminarProductoITem = new javax.swing.JMenuItem();
+        MenuItem_Lista_Productos = new javax.swing.JMenuItem();
         JMenuCompra = new javax.swing.JMenu();
         ListaComprasItem = new javax.swing.JMenuItem();
         NuevaCompraItem = new javax.swing.JMenuItem();
@@ -160,13 +166,13 @@ public class AgregarCompra extends javax.swing.JFrame {
 
         JMenuInventario.setText("Inventario");
 
-        EliminarProductoITem.setText("Eliminar Producto");
-        EliminarProductoITem.addActionListener(new java.awt.event.ActionListener() {
+        MenuItem_Lista_Productos.setText("Eliminar Producto");
+        MenuItem_Lista_Productos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarProductoITemActionPerformed(evt);
+                MenuItem_Lista_ProductosActionPerformed(evt);
             }
         });
-        JMenuInventario.add(EliminarProductoITem);
+        JMenuInventario.add(MenuItem_Lista_Productos);
 
         MenuBar.add(JMenuInventario);
 
@@ -253,48 +259,43 @@ public class AgregarCompra extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EliminarProductoITemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductoITemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EliminarProductoITemActionPerformed
+    private void MenuItem_Lista_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItem_Lista_ProductosActionPerformed
+        Inventario in = new Inventario();
+        in.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuItem_Lista_ProductosActionPerformed
 
     private void NuevaCompraItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCompraItemActionPerformed
-        // TODO add your handling code here:
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevaCompraItemActionPerformed
 
     private void NuevoProductoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoItemActionPerformed
-        // TODO add your handling code here:
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevoProductoItemActionPerformed
 
     private void ListaPedidosItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaPedidosItemActionPerformed
-        // TODO add your handling code here:
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
         dispose();
     }//GEN-LAST:event_ListaPedidosItemActionPerformed
 
     private void NuevoPedidoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoPedidoItemActionPerformed
-        // TODO add your handling code here:
-        AgregarCompra AP = new AgregarCompra();
+        AgregarPedido AP = new AgregarPedido();
         AP.setVisible(true);
         dispose();
     }//GEN-LAST:event_NuevoPedidoItemActionPerformed
 
     private void JMenuCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionMouseClicked
-        // TODO add your handling code here:
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
     }//GEN-LAST:event_JMenuCerrarSesionMouseClicked
 
     private void JMenuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuCerrarSesionActionPerformed
-        // TODO add your handling code here:
-
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
@@ -309,33 +310,19 @@ public class AgregarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_TFIDProductoActionPerformed
 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
-        // TODO add your handling code here:
         String nombre = TFNombreC.getText();
         int IDProducto = Integer.parseInt( TFIDProducto.getText());
         int Cantidad = Integer.parseInt(JTCantidad.getText());
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
-     
-        PreparedStatement ps;
-        //ResultSet rs;
-        //ResultSetMetaData rsmd;
         
         try{
-            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            String username = "root";
-            String password = "Lechedefresa";
-            /*String username = "root";
-            String password = "$usanA198";*/
-            
             Connection connection = DriverManager.getConnection(url,username,password);
             ps= connection.prepareStatement("INSERT INTO pedidos (nom_client, id_pr,cantidad, fecha) VALUES (?, ?, ?, ?)");
-            
             ps.setString(1, nombre);
             ps.setInt(2, IDProducto);
             ps.setInt(3, Cantidad);
             ps.setString(4, timeStamp);
             ps.executeUpdate();
-            
-            
             
             JOptionPane.showMessageDialog(null, "Registro guardado");
         }catch(SQLException e){
@@ -348,7 +335,6 @@ public class AgregarCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_JTCantidadActionPerformed
 
     private void ListaComprasItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaComprasItemActionPerformed
-        // TODO add your handling code here:
         CompraInterfaz CI = new CompraInterfaz();
         CI.setVisible(true);
         dispose();
@@ -371,27 +357,27 @@ public class AgregarCompra extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarCompra().setVisible(true);
+                new AgregarPedido().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;
-    private javax.swing.JMenuItem EliminarProductoITem;
     private javax.swing.JPanel FondoMorado;
     private javax.swing.JLabel IDPrLabel;
     private javax.swing.JMenu JMenuCerrarSesion;
@@ -405,6 +391,7 @@ public class AgregarCompra extends javax.swing.JFrame {
     private javax.swing.JMenuItem ListaComprasItem;
     private javax.swing.JMenuItem ListaPedidosItem;
     private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenuItem MenuItem_Lista_Productos;
     private javax.swing.JMenuItem NuevaCompraItem;
     private javax.swing.JMenuItem NuevoPedidoItem;
     private javax.swing.JMenuItem NuevoProductoItem;

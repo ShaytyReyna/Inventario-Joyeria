@@ -15,10 +15,21 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author yukinora
+ * Eda Nolasco
+ * Sara Reyna 
+ * Nohemi Ramos
  */
 public class Inventario extends javax.swing.JFrame {
+    //**************ATRIBUTOS*****************
+    String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
+    String username = "root";
+    //String password = "Lechedefresa";
+    String password = "$usanA198";
     
+    PreparedStatement ps;
+    ResultSet rs;
+    ResultSetMetaData rsmd;
+    //***************FIN ATRIBUTOS***********************
     /**
      * Creates new form Inventario
      */
@@ -31,16 +42,8 @@ public class Inventario extends javax.swing.JFrame {
     private void cargarTabla(){
         DefaultTableModel modeloTabla = (DefaultTableModel)Inventario.getModel();
         modeloTabla.setRowCount(0);
-        PreparedStatement ps;
-        ResultSet rs;
-        ResultSetMetaData rsmd;
         int columnas;
         try{
-            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            String username = "root";
-            //String password = "Lechedefresa";
-            String password = "$usanA198";
-            
             Connection connection = DriverManager.getConnection(url,username,password);
             ps = connection.prepareStatement("SELECT * FROM inventario");
             rs = ps.executeQuery();
@@ -89,16 +92,16 @@ public class Inventario extends javax.swing.JFrame {
         botonBuscar = new javax.swing.JButton();
         botonLimpiar = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem17 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
-        jMenuItem19 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        JMenuInventario = new javax.swing.JMenu();
+        MenuItem_ListaProductos = new javax.swing.JMenuItem();
+        JMenuCompra = new javax.swing.JMenu();
+        MenuItem_ListaCompras = new javax.swing.JMenuItem();
+        MenuItem_RegistrarCompra = new javax.swing.JMenuItem();
+        MenuItem_AgregarProducto = new javax.swing.JMenuItem();
+        JMenuPedidos = new javax.swing.JMenu();
+        MenuItem_ListaPedidos = new javax.swing.JMenuItem();
+        MenuItem_AgregarPedido = new javax.swing.JMenuItem();
+        JMenu_CerrarSesion = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -247,83 +250,78 @@ public class Inventario extends javax.swing.JFrame {
                         .addGap(22, 22, 22))))
         );
 
-        jMenu1.setText("Inventario");
+        JMenuInventario.setText("Inventario");
 
-        jMenuItem13.setText("Lista de Productos");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        MenuItem_ListaProductos.setText("Lista de Productos");
+        MenuItem_ListaProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                MenuItem_ListaProductosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem13);
+        JMenuInventario.add(MenuItem_ListaProductos);
 
-        jMenuBar2.add(jMenu1);
+        jMenuBar2.add(JMenuInventario);
 
-        jMenu3.setText("Compra");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+        JMenuCompra.setText("Compra");
+
+        MenuItem_ListaCompras.setText("Listas de Compras");
+        MenuItem_ListaCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
+                MenuItem_ListaComprasActionPerformed(evt);
             }
         });
+        JMenuCompra.add(MenuItem_ListaCompras);
 
-        jMenuItem17.setText("Listas de Compras");
-        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+        MenuItem_RegistrarCompra.setText("Registrar nueva compra");
+        MenuItem_RegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem17ActionPerformed(evt);
+                MenuItem_RegistrarCompraActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem17);
+        JMenuCompra.add(MenuItem_RegistrarCompra);
 
-        jMenuItem18.setText("Registrar nueva compra");
-        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+        MenuItem_AgregarProducto.setText("Agregar nuevo producto");
+        MenuItem_AgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem18ActionPerformed(evt);
+                MenuItem_AgregarProductoActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem18);
+        JMenuCompra.add(MenuItem_AgregarProducto);
 
-        jMenuItem19.setText("Agregar nuevo producto");
-        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar2.add(JMenuCompra);
+
+        JMenuPedidos.setText("Pedidos");
+
+        MenuItem_ListaPedidos.setText("Lista de pedidos");
+        MenuItem_ListaPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem19ActionPerformed(evt);
+                MenuItem_ListaPedidosActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem19);
+        JMenuPedidos.add(MenuItem_ListaPedidos);
 
-        jMenuBar2.add(jMenu3);
-
-        jMenu2.setText("Pedidos");
-
-        jMenuItem14.setText("Lista de pedidos");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+        MenuItem_AgregarPedido.setText("Agregar Pedido");
+        MenuItem_AgregarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
+                MenuItem_AgregarPedidoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem14);
+        JMenuPedidos.add(MenuItem_AgregarPedido);
 
-        jMenuItem15.setText("Agregar Pedido");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem15);
+        jMenuBar2.add(JMenuPedidos);
 
-        jMenuBar2.add(jMenu2);
-
-        jMenu4.setText("Cerrar Sesion");
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+        JMenu_CerrarSesion.setText("Cerrar Sesion");
+        JMenu_CerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
+                JMenu_CerrarSesionMouseClicked(evt);
             }
         });
-        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+        JMenu_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu4ActionPerformed(evt);
+                JMenu_CerrarSesionActionPerformed(evt);
             }
         });
-        jMenuBar2.add(jMenu4);
+        jMenuBar2.add(JMenu_CerrarSesion);
 
         setJMenuBar(jMenuBar2);
 
@@ -347,68 +345,55 @@ public class Inventario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void MenuItem_ListaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItem_ListaProductosActionPerformed
         Inventario in = new Inventario();
         in.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
+    }//GEN-LAST:event_MenuItem_ListaProductosActionPerformed
 
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+    private void MenuItem_ListaComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItem_ListaComprasActionPerformed
         CompraInterfaz CI = new CompraInterfaz();
         CI.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
+    }//GEN-LAST:event_MenuItem_ListaComprasActionPerformed
 
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+    private void MenuItem_RegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItem_RegistrarCompraActionPerformed
         RegistrarCompra NewCompra = new RegistrarCompra();
         NewCompra.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenuItem18ActionPerformed
+    }//GEN-LAST:event_MenuItem_RegistrarCompraActionPerformed
 
-    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+    private void MenuItem_AgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItem_AgregarProductoActionPerformed
         AgregarProducto NewProd = new AgregarProducto();
         NewProd.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenuItem19ActionPerformed
+    }//GEN-LAST:event_MenuItem_AgregarProductoActionPerformed
 
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu3ActionPerformed
-
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+    private void MenuItem_ListaPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItem_ListaPedidosActionPerformed
         Pedidos PD = new Pedidos();
         PD.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
+    }//GEN-LAST:event_MenuItem_ListaPedidosActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        AgregarCompra AP = new AgregarCompra();
+    private void MenuItem_AgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItem_AgregarPedidoActionPerformed
+        AgregarPedido AP = new AgregarPedido();
         AP.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
+    }//GEN-LAST:event_MenuItem_AgregarPedidoActionPerformed
 
-    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        // TODO add your handling code here:
+    private void JMenu_CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_CerrarSesionMouseClicked
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenu4MouseClicked
+    }//GEN-LAST:event_JMenu_CerrarSesionMouseClicked
 
-    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        // TODO add your handling code here:
+    private void JMenu_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenu_CerrarSesionActionPerformed
         InicioSesion IS = new InicioSesion();
         IS.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenu4ActionPerformed
+    }//GEN-LAST:event_JMenu_CerrarSesionActionPerformed
 
     private void InventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseClicked
-        // TODO add your handling code here:
-        String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-        String username = "root";
-        //String password = "NRAmimis&";
-        String password = "$usanA198";
-        PreparedStatement ps;
-        ResultSet rs;
         try{
             int fila = Inventario.getSelectedRow();
             int id = Integer.parseInt(Inventario.getValueAt(fila, 0).toString());
@@ -428,26 +413,22 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_InventarioMouseClicked
 
     private void botonEliminarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarInventarioActionPerformed
-       
-            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            String username = "root";
-            //String password = "NRAmimis&";
-            String password = "$usanA198";
             int id = Integer.parseInt(MostrarID.getText());
             try {
                 Connection connection = DriverManager.getConnection(url,username,password);
 
-                PreparedStatement pps= connection.prepareStatement("DELETE FROM inventario WHERE id_pr=?");
-                pps.setInt(1, id);
-                pps.executeUpdate();
+                ps= connection.prepareStatement("DELETE FROM inventario WHERE id_pr=?");
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                
                 JOptionPane.showMessageDialog(null,"Producto eliminado");
                 cargarTabla();//funcion para mostrar la tabla
+                
                 MostrarID.setText("");
                 Productos.setText("");
                 Precio.setText("");
                 Stock.setText("");
             } catch (SQLException ex) {
-                //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null,ex.toString());
             }
 
@@ -460,18 +441,11 @@ public class Inventario extends javax.swing.JFrame {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         DefaultTableModel modeloTabla = (DefaultTableModel)Inventario.getModel();
         modeloTabla.setRowCount(0);
-        PreparedStatement ps;
-        ResultSet rs;
-        ResultSetMetaData rsmd;
+        
         int columnas;
         int id = Integer.parseInt(MostrarID.getText());
         String nomProducto = Productos.getText();
         try{
-            String url = "jdbc:mysql://localhost:3306/inventario_joyeria";
-            String username = "root";
-            //String password = "Lechedefresa";
-            String password = "$usanA198";
-            
             Connection connection = DriverManager.getConnection(url,username,password);
             ps = connection.prepareStatement("SELECT * FROM inventario WHERE id_pr =? or productos= ?");
             ps.setInt(1, id);
@@ -485,7 +459,6 @@ public class Inventario extends javax.swing.JFrame {
                     fila[i] = rs.getObject(i+1);
                 }
                 modeloTabla.addRow(fila);
-                
             }
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,ex.toString());
@@ -537,6 +510,16 @@ public class Inventario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Inventario;
+    private javax.swing.JMenu JMenuCompra;
+    private javax.swing.JMenu JMenuInventario;
+    private javax.swing.JMenu JMenuPedidos;
+    private javax.swing.JMenu JMenu_CerrarSesion;
+    private javax.swing.JMenuItem MenuItem_AgregarPedido;
+    private javax.swing.JMenuItem MenuItem_AgregarProducto;
+    private javax.swing.JMenuItem MenuItem_ListaCompras;
+    private javax.swing.JMenuItem MenuItem_ListaPedidos;
+    private javax.swing.JMenuItem MenuItem_ListaProductos;
+    private javax.swing.JMenuItem MenuItem_RegistrarCompra;
     private javax.swing.JTextField MostrarID;
     private javax.swing.JTextField Precio;
     private javax.swing.JTextField Productos;
@@ -548,22 +531,12 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
