@@ -113,7 +113,7 @@ public class CompraInterfaz extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre Cliente", "Cantidad", "Fecha"
+                "ID", "ID Producto", "Cantidad", "Fecha"
             }
         ) {
             boolean[] canEdit = new boolean [] {

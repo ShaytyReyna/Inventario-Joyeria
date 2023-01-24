@@ -96,13 +96,13 @@ public class Pedidos extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         JMenu_Inventario = new javax.swing.JMenu();
         Item_Lista_Productos = new javax.swing.JMenuItem();
-        jMenu_Pedidos = new javax.swing.JMenu();
-        Item_Lista_Pedidos = new javax.swing.JMenuItem();
-        Item_AgregarPedido = new javax.swing.JMenuItem();
         jMenu_Compra = new javax.swing.JMenu();
         Item_Lista_Compras = new javax.swing.JMenuItem();
         Item_Registrar_Compra = new javax.swing.JMenuItem();
         Item_Agregar_Producto = new javax.swing.JMenuItem();
+        jMenu_Pedidos = new javax.swing.JMenu();
+        Item_Lista_Pedidos = new javax.swing.JMenuItem();
+        Item_AgregarPedido = new javax.swing.JMenuItem();
         jMenu_Cerrar_Sesion = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -289,31 +289,6 @@ public class Pedidos extends javax.swing.JFrame {
 
         jMenuBar2.add(JMenu_Inventario);
 
-        jMenu_Pedidos.setText("Pedidos");
-        jMenu_Pedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu_PedidosActionPerformed(evt);
-            }
-        });
-
-        Item_Lista_Pedidos.setText("Lista de pedidos");
-        Item_Lista_Pedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Item_Lista_PedidosActionPerformed(evt);
-            }
-        });
-        jMenu_Pedidos.add(Item_Lista_Pedidos);
-
-        Item_AgregarPedido.setText("Agregar Pedido");
-        Item_AgregarPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Item_AgregarPedidoActionPerformed(evt);
-            }
-        });
-        jMenu_Pedidos.add(Item_AgregarPedido);
-
-        jMenuBar2.add(jMenu_Pedidos);
-
         jMenu_Compra.setText("Compra");
 
         Item_Lista_Compras.setText("Listas de Compras");
@@ -341,6 +316,31 @@ public class Pedidos extends javax.swing.JFrame {
         jMenu_Compra.add(Item_Agregar_Producto);
 
         jMenuBar2.add(jMenu_Compra);
+
+        jMenu_Pedidos.setText("Pedidos");
+        jMenu_Pedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu_PedidosActionPerformed(evt);
+            }
+        });
+
+        Item_Lista_Pedidos.setText("Lista de pedidos");
+        Item_Lista_Pedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Item_Lista_PedidosActionPerformed(evt);
+            }
+        });
+        jMenu_Pedidos.add(Item_Lista_Pedidos);
+
+        Item_AgregarPedido.setText("Agregar Pedido");
+        Item_AgregarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Item_AgregarPedidoActionPerformed(evt);
+            }
+        });
+        jMenu_Pedidos.add(Item_AgregarPedido);
+
+        jMenuBar2.add(jMenu_Pedidos);
 
         jMenu_Cerrar_Sesion.setText("Cerrar Sesion");
         jMenu_Cerrar_Sesion.addMouseListener(new java.awt.event.MouseAdapter() {
