@@ -32,8 +32,9 @@ public class AgregarPedido extends javax.swing.JFrame {
     PreparedStatement ps;
             
     public AgregarPedido() {
-        this.setLocationRelativeTo(null);
+        
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -314,14 +315,15 @@ public class AgregarPedido extends javax.swing.JFrame {
         int IDProducto = Integer.parseInt( TFIDProducto.getText());
         int Cantidad = Integer.parseInt(JTCantidad.getText());
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
-        
+        int con =0;
         try{
             Connection connection = DriverManager.getConnection(url,username,password);
-            ps= connection.prepareStatement("INSERT INTO pedidos (nom_client, id_pr,cantidad, fecha) VALUES (?, ?, ?, ?)");
+            ps= connection.prepareStatement("INSERT INTO pedidos (nom_client, id_pr,cantidad, fecha,completado) VALUES (?, ?, ?, ?,?)");
             ps.setString(1, nombre);
             ps.setInt(2, IDProducto);
             ps.setInt(3, Cantidad);
             ps.setString(4, timeStamp);
+            ps.setInt(5, con);
             ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Registro guardado");

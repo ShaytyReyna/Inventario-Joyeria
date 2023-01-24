@@ -28,8 +28,8 @@ public class Pedidos extends javax.swing.JFrame {
         initComponents();
         cargarTabla();
         this.setLocationRelativeTo(null);
-        CantidadTF.setVisible(false);
         jScrollPane2.setVisible(false);
+        CantidadTF.setVisible(false);
         Pedidos.setDefaultRenderer(Object.class,new PedidosClass());
     }
      //**********************************************************

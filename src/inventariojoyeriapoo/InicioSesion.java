@@ -32,14 +32,14 @@ public class InicioSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LabelPrincipal = new javax.swing.JLabel();
-        LabelUsuario = new javax.swing.JLabel();
-        LabelContra = new javax.swing.JLabel();
-        TFUsuario = new javax.swing.JTextField();
-        BotonListo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         ContraField = new javax.swing.JPasswordField();
+        BotonListo = new javax.swing.JButton();
+        LabelContra = new javax.swing.JLabel();
+        LabelUsuario = new javax.swing.JLabel();
+        LabelPrincipal = new javax.swing.JLabel();
+        TFUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(194, 196, 242));
@@ -47,15 +47,10 @@ public class InicioSesion extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LabelPrincipal.setText("INICIO DE SESION");
-        getContentPane().add(LabelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 45, 160, -1));
-
-        LabelUsuario.setText("Usuario");
-        getContentPane().add(LabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 104, 57, -1));
-
-        LabelContra.setText("Contraseña: ");
-        getContentPane().add(LabelContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 144, -1, -1));
-        getContentPane().add(TFUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 101, 130, -1));
+        jPanel2.setBackground(new java.awt.Color(194, 196, 242));
+        jPanel2.setLayout(null);
+        jPanel2.add(ContraField);
+        ContraField.setBounds(130, 120, 130, 22);
 
         BotonListo.setBackground(new java.awt.Color(113, 118, 217));
         BotonListo.setForeground(new java.awt.Color(255, 255, 255));
@@ -65,17 +60,54 @@ public class InicioSesion extends javax.swing.JFrame {
                 BotonListoMouseClicked(evt);
             }
         });
-        getContentPane().add(BotonListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 209, 75, -1));
 
-        jPanel1.setLayout(null);
+        LabelContra.setText("Contraseña: ");
 
-        jPanel2.setBackground(new java.awt.Color(194, 196, 242));
-        jPanel2.setLayout(null);
-        jPanel2.add(ContraField);
-        ContraField.setBounds(130, 120, 130, 22);
+        LabelUsuario.setText("Usuario");
 
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 20, 360, 260);
+        LabelPrincipal.setText("INICIO DE SESION");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(LabelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(LabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(TFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(LabelContra))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(BotonListo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(LabelPrincipal)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(LabelUsuario))
+                    .addComponent(TFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(LabelContra)
+                .addGap(49, 49, 49)
+                .addComponent(BotonListo))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
